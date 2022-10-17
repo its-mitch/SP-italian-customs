@@ -1,0 +1,81 @@
+<script src="https://weblocks.io/library.js"></script>
+
+<script src="https://uploads-ssl.webflow.com/61e6e776f7b79f4f941b254e/634d291660887068203b43be_models.txt" type="text/javascript"></script>
+
+<script>
+
+
+let compMatrix=[];
+compMatrix[0]=[];
+
+let makeArr=[];
+
+let arrMod=modelString.split("<");
+
+
+//console.table(arrMod);
+let k=0;
+while(k<arrMod.length){
+        let oneModel=arrMod[k].split(">");
+        compMatrix[k]=[];
+        compMatrix[k]=oneModel;
+        makeArr[k]=oneModel[0];
+        k++;
+}
+
+makeArr=makeArr.filter(onlyUnique);
+
+  function onlyUnique(value, index, self) {
+  return self.indexOf(value) === index;
+}
+//populate makes
+console.log(makeArr);
+Array.from(makeArr).forEach(element => {
+     $('#make-filter').append($('<option>', {value:element, text:element}));
+     })
+/*
+Array.from(subcatArr).forEach(element => {
+     $('#subcat-filter').append($('<option>', {value:element, text:element}));
+     })
+*/
+
+let makeSel=document.getElementById("make-filter");
+let modelSel=document.getElementById("model-filter");
+let yearSel=document.getElementById("year-filter");
+
+//populate models
+makeSel.onchange= function(){
+	makeSel.selectedOptions;
+  while (modelSel.options.length > 0) {
+        modelSel.remove(1);
+  }
+  for(i=0; i<compMatrix.length; i++){
+  	if(makeSel.selectedOptions[0].innerText==modelMatrix[i][0]){
+    	$('#model-filter').append($('<option>', {value:modelMatrix[i][1], text:modelMatrix[i][1]}));
+     	}
+    }
+  
+  document.cookie = "makeFilter="+makeSel.selectedOptions[0].innerText+"; path=/articoli"
+
+};
+
+//populate years
+modelSel.onchange= function(){
+	modelSel.selectedOptions;
+  while (modelSel.options.length > 0) {
+        yearSel.remove(1);
+  }
+  for(i=0; i<compMatrix.length; i++){
+  	if(makeSel.selectedOptions[0].innerText==modelMatrix[i][0] && modelSel.selectedOptions[0].innerText==modelMatrix[i][1]){
+        let yearRange=modelMatrix[i][2].split("-");
+        while (yearRange[0]<=yearRange[1]){
+            $('#year-filter').append($('<option>', {value:yearRange[0], text:yearRange[0]}));
+        }
+    	
+    }
+  
+  document.cookie = "selectedModel="+modelSel.selectedOptions[0].innerText+"; path=/articoli"
+
+};
+}
+</script>
