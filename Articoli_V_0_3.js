@@ -253,11 +253,17 @@ var globalCode;
       }
     }
     if (product.variant != null) {
-      var variantArr = product.variant.split(",");
-      variantArr = variantArr.filter(onlyUnique);
-      variantArr = variantArr.sort();
-      if (variant) variant.textContent = variantArr;
-      globVariants = product.variant.split(",").filter(onlyUnique);
+      if(Array.isArray(product.variant)){
+        var variantArr = product.variant.split(",");
+        variantArr = variantArr.filter(onlyUnique);
+        variantArr = variantArr.sort();
+        if (variant) variant.textContent = variantArr;
+        globVariants = product.variant.split(",").filter(onlyUnique);
+      }else{
+        variant.textContent = product.variant;
+        globVariants = product.variant;
+      }
+      
     } else {
       if (variant) variant.textContent[0] = "Universale";
       globVariants = "Universale";
