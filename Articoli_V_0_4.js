@@ -254,11 +254,10 @@ var globalCode;
     }
     if (product.variant != null) {
       if(Array.isArray(product.variant)){
-        var variantArr = product.variant.split(",");
-        variantArr = variantArr.filter(onlyUnique);
-        variantArr = variantArr.sort();
+        var variantArr = product.variant;
+        variantArr = variantArr;
         if (variant) variant.textContent = variantArr;
-        globVariants = product.variant.split(",").filter(onlyUnique);
+        globVariants = product.variant;
       }else{
         variant.textContent = product.variant;
         globVariants = product.variant;
