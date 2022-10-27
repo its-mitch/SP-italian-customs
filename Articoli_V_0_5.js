@@ -147,7 +147,7 @@ var globalCode;
     const subcategory = newItem.querySelector('[data-element="subcategory"]');
     const make = newItem.querySelector('[data-element="make"]');
     const model = newItem.querySelector('[data-element="model"]');
-    const variante = newItem.querySelector('[data-element="variante"]');
+    const variant = newItem.querySelector('[data-element="variante"]');
     const producer = newItem.querySelector('[data-element="producer"]');
     //const button = newItem.querySelector('[data-element="button"]');
     const description = newItem.querySelector('[data-element="description"]');
