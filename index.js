@@ -98,23 +98,3 @@
    
   
   })();
-
-
-  <style>
-.shop_grid{
-opacity:0;
-}
-.pagination{
-opacity:0;
-}
-.shop_item_details {
-    -ms-overflow-style: none; /* for Internet Explorer, Edge */
-    overflow-y: hidden; /* Hide vertical scrollbar */
-  	overflow-x: hidden; /* Hide horizontal scrollbar */
-    
-}
-
-.shop_item_details::-webkit-scrollbar {
-    display: none; /* for Chrome, Safari, and Opera */
-}
-</style>
