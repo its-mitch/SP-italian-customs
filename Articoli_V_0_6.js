@@ -19,42 +19,48 @@ var globalCode;
       const newItems = products.map((product) => createItem(product, itemTemplateElement));
       await listInstance.addItems(newItems);
       document.getElementById("colWrap").setAttribute("style", "opacity:1");
-
-      if (makes[0] == "Universale") {
-        document.getElementById("make-wrap").setAttribute("style", "display:none");
-      } else {
-        Array.from(makes).forEach(element => {
-          $('#Marca').append($('<option>', { value: element, text: element }));
-        })
+      if (makes != null) {
+        if (makes[0] == "Universale") {
+          document.getElementById("make-wrap").setAttribute("style", "display:none");
+        } else {
+          Array.from(makes).forEach(element => {
+            $('#Marca').append($('<option>', { value: element, text: element }));
+          })
+        }
       }
-      if (models[0] == "Universale") {
-        document.getElementById("model-wrap").setAttribute("style", "display:none");
-      } else {
-        Array.from(models).forEach(element => {
-          var s = element;
-          $('#Modello').append('<option value="' + s + '">' + s + '</option>');
-        })
+      if (models != null) {
+        if (models[0] == "Universale") {
+          document.getElementById("model-wrap").setAttribute("style", "display:none");
+        } else {
+          Array.from(models).forEach(element => {
+            var s = element;
+            $('#Modello').append('<option value="' + s + '">' + s + '</option>');
+          })
+        }
       }
-      if (Array.isArray(years)) {
-        Array.from(years).forEach(element => {
-          var s = element;
-          $('#Anno').append('<option value="' + s + '">' + s.toString() + '</option>');
-        })
-      } else {
-        $('#Anno').append('<option value="' + "Universale" + '">' + "Universale" + '</option>');
-        document.getElementById("year-wrap").setAttribute("style", "display:none");
+      if (years != null) {
+        if (Array.isArray(years)) {
+          Array.from(years).forEach(element => {
+            var s = element;
+            $('#Anno').append('<option value="' + s + '">' + s.toString() + '</option>');
+          })
+        } else {
+          $('#Anno').append('<option value="' + "Universale" + '">' + "Universale" + '</option>');
+          document.getElementById("year-wrap").setAttribute("style", "display:none");
 
+        }
       }
+      if (globVariants != null) {
+        if (Array.isArray(globVariants)) {
+          Array.from(globVariants).forEach(element => {
+            var s = element;
+            $('#variante').append('<option value="' + s + '">' + s + '</option>');
+          })
+        } else {
+          $('#variante').append('<option value="' + globVariants + '">' + globVariants + '</option>');
+          document.getElementById("var-wrap").setAttribute("style", "display:none");
 
-      if (Array.isArray(globVariants)) {
-        Array.from(globVariants).forEach(element => {
-          var s = element;
-          $('#variante').append('<option value="' + s + '">' + s + '</option>');
-        })
-      } else {
-        $('#variante').append('<option value="' + globVariants + '">' + globVariants + '</option>');
-        document.getElementById("var-wrap").setAttribute("style", "display:none");
-
+        }
       }
       const itemCode = document.getElementById("addToCart");
       const fCode = itemCode.textContent;
@@ -157,9 +163,13 @@ var globalCode;
     const sku = newItem.querySelector('[data-element="sku"]');
     const fCode = newItem.querySelector('[data-element="f-code"]');
 
+    const slides = newItem.querySelector('[data-element="slide"]');
+    const leftArrow = document.querySelector('[data-cms="left-arrow"]');
+    const rightArrow = document.querySelector('[data-cms="right-arrow"]');
 
 
     // Populate inner elements
+    /*
     var defaultImage =
       "https://uploads-ssl.webflow.com/61e6e776f7b79f4f941b254e/61eb5f843eec5928ee20796b_logo_slate_grey.svg";
 
@@ -168,8 +178,64 @@ var globalCode;
       if (fImage) fImage.src = product.img;
     } else {
       if (image) image.src = defaultImage;
-      if (fImage) fImage.src = product.image;
+      if (fImage) fImage.src = defaultImage;
     }
+    */
+    var images = [];
+    if (product.altImg != null) {
+      var imgArr = product.altImg.split(",");
+      images[0] = img;
+      let ii = 1;
+      while (ii < imgArr.length) {
+        images[ii] = imgArr[ii - 1];
+        ii++;
+      }
+    } else {
+      images[0] = product.img;
+    }
+
+    if (images.length <= 1) {
+      [leftArrow, rightArrow].forEach(el => el.style.display = 'none');
+    }
+
+    images.forEach((image, i) => slides[i].style.backgroundImage = image);
+
+    const parent = slides[0].parentElement;
+    slides.forEach((slide, i) => {
+      if (i >= images.length) {
+        parent.removeChild(slide);
+      }
+      slide.style.transition = 'transform 500ms ease 0s';
+    });
+
+    slides = [...document.querySelectorAll('[data-cms="slide"]')];
+
+    const parentWidth = parent.offsetWidth;
+    const maxX = (parentWidth * (slides.length)) * -1;
+
+    let currentX = 0;
+
+    [leftArrow, rightArrow].forEach((arrow, i) => {
+      $(arrow).off();
+      const direction = i === 0 ? 'left' : 'right';
+      arrow.addEventListener('click', () => {
+        if (direction === 'left') {
+          if (currentX === 0) {
+            currentX = maxX + parentWidth;
+          } else {
+            currentX = currentX + parentWidth;
+          }
+        } else {
+          let newX = currentX - parentWidth;
+          if (newX === maxX) {
+            newX = 0;
+          }
+          currentX = newX;
+        }
+        slides.forEach(slide => slide.style.transform = `translateX(${currentX}px)`);
+      });
+    });
+
     if (name) name.textContent = product.name;
     if (fName) fName.value = product.name;
     if (category) category.textContent = product.category;
@@ -253,16 +319,16 @@ var globalCode;
       }
     }
     if (product.variant != null) {
-      if(Array.isArray(product.variant)){
+      if (Array.isArray(product.variant)) {
         var variantArr = product.variant;
         variantArr = variantArr;
         if (variant) variant.textContent = variantArr;
         globVariants = product.variant;
-      }else{
+      } else {
         variant.textContent = product.variant;
         globVariants = product.variant;
       }
-      
+
     } else {
       if (variant) variant.textContent[0] = "Universale";
       globVariants = "Universale";
