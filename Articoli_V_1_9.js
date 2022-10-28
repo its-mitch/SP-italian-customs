@@ -199,45 +199,19 @@ window.onload = () => {
           [leftArrow, rightArrow].forEach(el => el.style.display = 'none');
         }
 
-        images.forEach((image, i) => slides[i].style.backgroundImage = image);
+        //images.forEach((image, i) => slides[i].style.backgroundImage = image);
+
+        let kk=0;
+        while(kk<images.length){
+          slides[kk].style.backgroundImage = images[kk];
+        }
 
         const parent = slides[0].parentElement;
         slides.forEach((slide, i) => {
           if (i >= images.length) {
             parent.removeChild(slide);
           }
-          slide.style.transition = 'transform 500ms ease 0s';
         });
-
-        //slides = [...document.querySelectorAll('[data-cms="slide"]')];
-
-        const parentWidth = parent.offsetWidth;
-        const maxX = (parentWidth * (slides.length)) * -1;
-
-        let currentX = 0;
-
-        [leftArrow, rightArrow].forEach((arrow, i) => {
-          $(arrow).off();
-          const direction = i === 0 ? 'left' : 'right';
-          arrow.addEventListener('click', () => {
-            if (direction === 'left') {
-              if (currentX === 0) {
-                currentX = maxX + parentWidth;
-              } else {
-                currentX = currentX + parentWidth;
-              }
-            } else {
-              let newX = currentX - parentWidth;
-              if (newX === maxX) {
-                newX = 0;
-              }
-              currentX = newX;
-            }
-            slides.forEach(slide => slide.style.transform = `translateX(${currentX}px)`);
-          });
-        });
-
-        slider.style.opacity = 1;
       }
 
       if (name) name.textContent = product.name;
