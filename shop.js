@@ -89,11 +89,17 @@
         if (subcategory) subcategory.textContent = product.subcategory;
 
         //important
-        if (product.comp != null) {
+        if (product.Comp != null) {
             let yearSequence = [];
             let makeSequence = [];
             let modelSequence = [];
-            let compArr = product.comp.split("<>");
+            let compArray = [];
+            if (Array.isArray(product.Comp)) {
+                compArr = product.Comp;
+            } else {
+                compArr = product.Comp.split("<>");
+
+            }
             var i = 0;
             while (i < compArr.length) {
                 let compParts = compArr[i].split(" ");
@@ -115,12 +121,16 @@
                 let j = 1;
                 while (j < compParts.length - 1) {
                     modelSequence[i] = modelSequence[i] + " " + compParts[j];
+                    j++
                 }
                 i++;
             }
             make.textContent = makeSequence;
+            if (make) make.textContent = makeSequence;
             model.textContent = modelSequence;
+            if (model) model.textContent = modelSequence;
             year.textContent = yearSequence;
+            if (year) year.textContent = yearSequence;
         } else {
             if (product.make != null) {
                 if (make) make.textContent = product.make.toString().split(",").filter(onlyUnique);
@@ -156,7 +166,7 @@
         //if (code) code.textContent = product.code;
         //if (year) year.textContent = product.year;
 
-        let priceArr = product.pricez.toString();
+        let priceArr = product.price.toString();
         priceArr = priceArr.split(",").filter(onlyUnique);
         priceArr = priceArr.sort();
         if (price) price.textContent = "€" + addZeroes(priceArr[0]);
