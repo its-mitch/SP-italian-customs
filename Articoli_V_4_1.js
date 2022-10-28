@@ -65,7 +65,7 @@ var globalCode;
       const itemCode = document.getElementById("addToCart");
       const fCode = globalCode;
 
-      Webflow.require('ix2').init();
+      Webflow.require('slider').redraw();
 
       document.getElementById("fc-sku").value = globalCode;
 
