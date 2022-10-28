@@ -199,7 +199,7 @@ window.onload = () => {
           [leftArrow, rightArrow].forEach(el => el.style.display = 'none');
         }
 
-        images.forEach((image, i) => slides[i].style.backgroundImage = "url(\""+image[0]+"\")");
+        images.forEach((image, i) => slides[i].style.backgroundImage = "url(\""+image+'")');
 
         const parent = slides[0].parentElement;
         slides.forEach((slide, i) => {
