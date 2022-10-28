@@ -183,7 +183,7 @@ var globalCode;
     */
     var images = [];
     if (product.altImg != null) {
-      var imgArr = product.altImg.split(",");
+      var imgArr = product.altImg;
       images[0] = img;
       let ii = 1;
       while (ii < imgArr.length) {
