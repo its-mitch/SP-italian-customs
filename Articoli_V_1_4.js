@@ -5,6 +5,8 @@ window.onload = () => {
   var globVariants;
   var globalCode;
   let slides = [...document.querySelectorAll('[data-cms="slide"]')];
+  const leftArrow = document.querySelector('[data-cms="left-arrow"]');
+  const rightArrow = document.querySelector('[data-cms="right-arrow"]');
   (() => {
     window.fsAttributes = window.fsAttributes || [];
     window.fsAttributes.push([
@@ -192,8 +194,6 @@ window.onload = () => {
       } else {
         images[0] = "url(" + slash + product.img + ")";
       } if (images.length !== 0) {
-        const leftArrow = document.querySelector('[data-cms="left-arrow"]');
-        const rightArrow = document.querySelector('[data-cms="right-arrow"]');
 
         if (images.length <= 1) {
           [leftArrow, rightArrow].forEach(el => el.style.display = 'none');
