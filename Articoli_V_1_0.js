@@ -184,7 +184,7 @@ var globalCode;
     var images = [];
     if (product.altImg != null) {
       var imgArr = product.altImg;
-      images[0] = img;
+      images[0] = product.img;
       let ii = 1;
       while (ii < imgArr.length) {
         images[ii] = 'url(\\' + imgArr[ii - 1] + ")";
