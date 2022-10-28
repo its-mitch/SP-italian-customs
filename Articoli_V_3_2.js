@@ -1,4 +1,4 @@
-//window.onload = () => {
+window.onload = () => {
   var makes;
   var models;
   var years;
@@ -430,4 +430,4 @@
   });
   */
 
-//}
+}
