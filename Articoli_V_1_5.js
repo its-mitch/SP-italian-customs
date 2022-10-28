@@ -7,6 +7,7 @@ window.onload = () => {
   let slides = [...document.querySelectorAll('[data-cms="slide"]')];
   const leftArrow = document.querySelector('[data-cms="left-arrow"]');
   const rightArrow = document.querySelector('[data-cms="right-arrow"]');
+  const slider=document.querySelector('[data-cms="slider"]')
   (() => {
     window.fsAttributes = window.fsAttributes || [];
     window.fsAttributes.push([
@@ -237,7 +238,7 @@ window.onload = () => {
           });
         });
 
-        document.querySelector('[data-cms="slider"]').style.opacity = 1;
+        slider.style.opacity = 1;
       }
 
       if (name) name.textContent = product.name;
