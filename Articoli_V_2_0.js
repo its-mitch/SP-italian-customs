@@ -199,12 +199,7 @@ window.onload = () => {
           [leftArrow, rightArrow].forEach(el => el.style.display = 'none');
         }
 
-        //images.forEach((image, i) => slides[i].style.backgroundImage = image);
-
-        let kk=0;
-        while(kk<images.length){
-          slides[kk].style.backgroundImage = images[kk];
-        }
+        images.forEach((image, i) => slides[i].style.backgroundImage = image);
 
         const parent = slides[0].parentElement;
         slides.forEach((slide, i) => {
@@ -314,7 +309,7 @@ window.onload = () => {
       let priceArr = product.price.toString();
       priceArr = priceArr.split(",").filter(onlyUnique);
       priceArr = priceArr.sort();
-      if (price) price.textContent = "€" + priceArr[0];
+      if (price) price.textContent = "€" + addZeroes(priceArr[0]);
       if (fPrice) fPrice.value = priceArr[0];
 
       if (sku) sku.textContent = product.code;
@@ -329,6 +324,19 @@ window.onload = () => {
     function onlyUnique(value, index, self) {
       return self.indexOf(value) === index;
     }
+    function addZeroes(num) {
+      // Convert input string to a number and store as a variable.
+          var value = Number(num);      
+      // Split the input string into two arrays containing integers/decimals
+          var res = num.split(".");     
+      // If there is no decimal point or only one decimal place found.
+          if(res.length == 1 || res[1].length < 3) { 
+      // Set the number to two decimal places
+              value = value.toFixed(2);
+          }
+      // Return updated or original number.
+      return value;
+      }
 
 
   })();
