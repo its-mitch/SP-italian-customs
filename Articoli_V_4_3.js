@@ -220,7 +220,7 @@ var globalCode;
       }
 
     }
-    document.querySelector('[data-cms="slider"]').style.opacity = 1;
+    newItem.querySelector('[data-cms="slider"]').style.opacity = 1;
 
     if (name) name.textContent = product.name;
     if (fName) fName.value = product.name;
