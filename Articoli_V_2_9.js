@@ -203,6 +203,7 @@ window.onload = () => {
 
         //images.forEach((image, i) => slides[i].style.backgroundImage = 'url(\"'+image+'")');
         let kk = 0;
+        /*
         const parent = slides[0].parentElement;
         while (kk < slides.length) {
           if (kk >= images.length) {
@@ -210,6 +211,7 @@ window.onload = () => {
             kk++;
           }
         }
+        */
         /*
         slides.forEach((slide, i) => {
           if (i >= images.length) {
@@ -220,7 +222,9 @@ window.onload = () => {
 
         kk = 0;
         while (kk < images.length) {
-          slides[kk].style.backgroundImage = "url(" + images[kk] + ")";
+
+          var childImg=slides[kk].querySelector('[data-element="image"]');
+          childImg.src = images[kk];
           kk++;
         }
 
