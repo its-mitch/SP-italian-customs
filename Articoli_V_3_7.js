@@ -194,15 +194,8 @@ var globalCode;
       images[0] = product.img;
     } if (images.length !== 0) {
 
-      /*
-      if (images.length <= 1) {
-        [leftArrow, rightArrow].forEach(el => el.style.display = 'none');
-      }
-      */
-
       //images.forEach((image, i) => slides[i].style.backgroundImage = 'url(\"'+image+'")');
       let kk = 0;
-      /*
       const parent = slides[0].parentElement;
       while (kk < slides.length) {
         if (kk >= images.length) {
@@ -210,7 +203,6 @@ var globalCode;
           kk++;
         }
       }
-      */
       /*
       slides.forEach((slide, i) => {
         if (i >= images.length) {
@@ -221,14 +213,10 @@ var globalCode;
 
       kk = 0;
       while (kk < images.length) {
-
         var childImg = slides[kk].querySelector('[data-element="image"]');
         childImg.src = images[kk];
         kk++;
       }
-
-
-
 
     }
 
