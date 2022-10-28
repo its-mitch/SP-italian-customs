@@ -163,9 +163,6 @@ var globalCode;
     const sku = newItem.querySelector('[data-element="sku"]');
     const fCode = newItem.querySelector('[data-element="f-code"]');
 
-    let slides = newItem.querySelector('[data-element="slide"]');
-    const leftArrow = document.querySelector('[data-cms="left-arrow"]');
-    const rightArrow = document.querySelector('[data-cms="right-arrow"]');
 
 
     // Populate inner elements
@@ -193,6 +190,9 @@ var globalCode;
     } else {
       images[0] = 'url(\\' + product.img + ")";
     } if (images.length !== 0) {
+      let slides = [...document.querySelectorAll('[data-cms="slide"]')];
+      const leftArrow = document.querySelector('[data-cms="left-arrow"]');
+      const rightArrow = document.querySelector('[data-cms="right-arrow"]');
 
       if (images.length <= 1) {
         [leftArrow, rightArrow].forEach(el => el.style.display = 'none');
