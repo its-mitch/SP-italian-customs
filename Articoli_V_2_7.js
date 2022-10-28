@@ -202,21 +202,22 @@ window.onload = () => {
         */
 
         //images.forEach((image, i) => slides[i].style.backgroundImage = 'url(\"'+image+'")');
-
-        let kk=0;
-        while (kk < images.length) {
-          slides[kk].style.backgroundImage = 'url(\"'+images[kk]+'")';
-          kk++;
-        }
-
-
-
         const parent = slides[0].parentElement;
         slides.forEach((slide, i) => {
           if (i >= images.length) {
             parent.removeChild(slide);
           }
         });
+
+        let kk=0;
+        while (kk < images.length) {
+          slides[kk].style.backgroundImage = 'url('+images[kk]+')';
+          kk++;
+        }
+
+
+
+        
       }
 
       if (name) name.textContent = product.name;
