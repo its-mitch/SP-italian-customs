@@ -4,6 +4,7 @@ var models;
 var years;
 var globVariants;
 var globalCode;
+let slides = [...document.querySelectorAll('[data-cms="slide"]')];
 (() => {
   window.fsAttributes = window.fsAttributes || [];
   window.fsAttributes.push([
@@ -179,18 +180,18 @@ var globalCode;
     }
     */
     var images = [];
+    var slash=/\\/;
     if (product.altImg != null) {
       var imgArr = product.altImg;
-      images[0] = product.img;
+      images[0] = "url("+slash + product.img+ ")";
       let ii = 1;
       while (ii < imgArr.length) {
-        images[ii] = 'url(\\' + imgArr[ii - 1] + ")";
+        images[ii] = "url("+slash + imgArr[ii - 1] + ")";
         ii++;
       }
     } else {
-      images[0] = 'url(\\' + product.img + ")";
+      images[0] = "url("+slash + product.img + ")";
     } if (images.length !== 0) {
-      let slides = [...document.querySelectorAll('[data-cms="slide"]')];
       const leftArrow = document.querySelector('[data-cms="left-arrow"]');
       const rightArrow = document.querySelector('[data-cms="right-arrow"]');
 
