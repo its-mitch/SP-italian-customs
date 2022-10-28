@@ -149,7 +149,7 @@ window.onload = () => {
       const newItem = templateElement.cloneNode(true);
 
       // Query inner elements
-      const image = newItem.querySelector('[data-element="image"]');
+      //const image = newItem.querySelector('[data-element="image"]');
       const fImage = newItem.querySelector('[data-element="f-image"]');
       const name = newItem.querySelector('[data-element="name"]');
       const fName = newItem.querySelector('[data-element="f-name"]');
@@ -170,18 +170,18 @@ window.onload = () => {
 
 
       // Populate inner elements
-      /*
+      
       var defaultImage =
         "https://uploads-ssl.webflow.com/61e6e776f7b79f4f941b254e/61eb5f843eec5928ee20796b_logo_slate_grey.svg";
   
       if (product.img != null) {
-        if (image) image.src = product.img;
+        //if (image) image.src = product.img;
         if (fImage) fImage.src = product.img;
       } else {
-        if (image) image.src = defaultImage;
+        //if (image) image.src = defaultImage;
         if (fImage) fImage.src = defaultImage;
       }
-      */
+      
       var images = [];
       var slash = /\\/;
       if (product.altImg != null) {
@@ -195,11 +195,21 @@ window.onload = () => {
         images[0] = product.img;
       } if (images.length !== 0) {
 
+        /*
         if (images.length <= 1) {
           [leftArrow, rightArrow].forEach(el => el.style.display = 'none');
         }
+        */
 
-        images.forEach((image, i) => slides[i].style.backgroundImage = "url(\""+image+'")');
+        //images.forEach((image, i) => slides[i].style.backgroundImage = 'url(\"'+image+'")');
+
+        let kk=0;
+        while (kk < images.length) {
+          slides[kk].style.backgroundImage = 'url(\"'+images[kk]+'")';
+          kk++;
+        }
+
+
 
         const parent = slides[0].parentElement;
         slides.forEach((slide, i) => {
