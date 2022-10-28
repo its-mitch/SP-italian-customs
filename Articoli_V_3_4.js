@@ -4,7 +4,6 @@
   var years;
   var globVariants;
   var globalCode;
-  let slides = [...document.querySelectorAll('[data-cms="slide"]')];
   (() => {
     window.fsAttributes = window.fsAttributes || [];
     window.fsAttributes.push([
@@ -163,6 +162,9 @@
       const fPrice = newItem.querySelector('[data-element="price"]');
       const sku = newItem.querySelector('[data-element="sku"]');
       const fCode = newItem.querySelector('[data-element="f-code"]');
+
+      let slides = newItem.querySelectorAll('[data-cms="slide"]');
+
 
 
 
