@@ -199,7 +199,7 @@ var globalCode;
       const parent = slides[0].parentElement;
       while (kk < slides.length) {
         if (kk >= images.length) {
-          parent.removeChild(slide);
+          parent.removeChild(slides[kk]);
         }
         kk++;
       }
