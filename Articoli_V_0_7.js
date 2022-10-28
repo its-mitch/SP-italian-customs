@@ -163,7 +163,7 @@ var globalCode;
     const sku = newItem.querySelector('[data-element="sku"]');
     const fCode = newItem.querySelector('[data-element="f-code"]');
 
-    const slides = newItem.querySelector('[data-element="slide"]');
+    let slides = newItem.querySelector('[data-element="slide"]');
     const leftArrow = document.querySelector('[data-cms="left-arrow"]');
     const rightArrow = document.querySelector('[data-cms="right-arrow"]');
 
@@ -187,54 +187,57 @@ var globalCode;
       images[0] = img;
       let ii = 1;
       while (ii < imgArr.length) {
-        images[ii] = imgArr[ii - 1];
+        images[ii] = 'url(\\' + imgArr[ii - 1] + ")";
         ii++;
       }
     } else {
-      images[0] = product.img;
-    }
+      images[0] = 'url(\\' + product.img + ")";
+    } if (images.length !== 0) {
 
-    if (images.length <= 1) {
-      [leftArrow, rightArrow].forEach(el => el.style.display = 'none');
-    }
-
-    images.forEach((image, i) => slides[i].style.backgroundImage = image);
-
-    const parent = slides[0].parentElement;
-    slides.forEach((slide, i) => {
-      if (i >= images.length) {
-        parent.removeChild(slide);
+      if (images.length <= 1) {
+        [leftArrow, rightArrow].forEach(el => el.style.display = 'none');
       }
-      slide.style.transition = 'transform 500ms ease 0s';
-    });
 
-    slides = [...document.querySelectorAll('[data-cms="slide"]')];
+      images.forEach((image, i) => slides[i].style.backgroundImage = image);
 
-    const parentWidth = parent.offsetWidth;
-    const maxX = (parentWidth * (slides.length)) * -1;
-
-    let currentX = 0;
-
-    [leftArrow, rightArrow].forEach((arrow, i) => {
-      $(arrow).off();
-      const direction = i === 0 ? 'left' : 'right';
-      arrow.addEventListener('click', () => {
-        if (direction === 'left') {
-          if (currentX === 0) {
-            currentX = maxX + parentWidth;
-          } else {
-            currentX = currentX + parentWidth;
-          }
-        } else {
-          let newX = currentX - parentWidth;
-          if (newX === maxX) {
-            newX = 0;
-          }
-          currentX = newX;
+      const parent = slides[0].parentElement;
+      slides.forEach((slide, i) => {
+        if (i >= images.length) {
+          parent.removeChild(slide);
         }
-        slides.forEach(slide => slide.style.transform = `translateX(${currentX}px)`);
+        slide.style.transition = 'transform 500ms ease 0s';
       });
-    });
+
+      slides = [...document.querySelectorAll('[data-cms="slide"]')];
+
+      const parentWidth = parent.offsetWidth;
+      const maxX = (parentWidth * (slides.length)) * -1;
+
+      let currentX = 0;
+
+      [leftArrow, rightArrow].forEach((arrow, i) => {
+        $(arrow).off();
+        const direction = i === 0 ? 'left' : 'right';
+        arrow.addEventListener('click', () => {
+          if (direction === 'left') {
+            if (currentX === 0) {
+              currentX = maxX + parentWidth;
+            } else {
+              currentX = currentX + parentWidth;
+            }
+          } else {
+            let newX = currentX - parentWidth;
+            if (newX === maxX) {
+              newX = 0;
+            }
+            currentX = newX;
+          }
+          slides.forEach(slide => slide.style.transform = `translateX(${currentX}px)`);
+        });
+      });
+
+      document.querySelector('[data-cms="slider"]').style.opacity = 1;
+    }
 
     if (name) name.textContent = product.name;
     if (fName) fName.value = product.name;
