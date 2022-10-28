@@ -65,8 +65,6 @@ var globalCode;
       const itemCode = document.getElementById("addToCart");
       const fCode = globalCode;
 
-      Webflow.require('slider').redraw();
-
       document.getElementById("fc-sku").value = globalCode;
 
 
@@ -203,6 +201,7 @@ var globalCode;
         if (kk >= images.length) {
           parent.removeChild(slides[kk]);
         }
+        slides[kk].style.transition = 'transform 500ms ease 0s';
         kk++;
       }
       /*
@@ -221,6 +220,7 @@ var globalCode;
       }
 
     }
+    document.querySelector('[data-cms="slider"]').style.opacity = 1;
 
     if (name) name.textContent = product.name;
     if (fName) fName.value = product.name;
