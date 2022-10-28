@@ -1,13 +1,10 @@
-window.onload = () => {
+//window.onload = () => {
   var makes;
   var models;
   var years;
   var globVariants;
   var globalCode;
   let slides = [...document.querySelectorAll('[data-cms="slide"]')];
-  const leftArrow = document.querySelector('[data-cms="left-arrow"]');
-  const rightArrow = document.querySelector('[data-cms="right-arrow"]');
-  const slider = document.querySelector('[data-cms="slider"]');
   (() => {
     window.fsAttributes = window.fsAttributes || [];
     window.fsAttributes.push([
@@ -432,4 +429,4 @@ window.onload = () => {
     $('input[name="quantity"]').val("1").attr("min", "1");
   });
 
-}
+//}
