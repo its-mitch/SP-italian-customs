@@ -200,8 +200,8 @@ var globalCode;
       while (kk < slides.length) {
         if (kk >= images.length) {
           parent.removeChild(slide);
-          kk++;
         }
+        kk++;
       }
       /*
       slides.forEach((slide, i) => {
