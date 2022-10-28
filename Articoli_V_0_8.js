@@ -63,7 +63,7 @@ var globalCode;
         }
       }
       const itemCode = document.getElementById("addToCart");
-      const fCode = itemCode.textContent;
+      const fCode = globalCode;
 
       document.getElementById("fc-sku").value = globalCode;
 
