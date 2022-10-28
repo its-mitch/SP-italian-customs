@@ -301,15 +301,15 @@
       if (product.model != null) if (model) model.textContent = product.model.split(",").filter(onlyUnique);
       if (producer) producer.textContent = product.brand;
       if (product.desc != null) {
-        if (product.descFull != null) {
-          let descFull = product.desc + " " + product.descFull;
-          if (description) description.textContent = descFull;
+        if (product.desFull != null) {
+          let desFull = product.desc + " \n" + product.desFull;
+          if (description) description.textContent = desFull;
         } else {
           if (description) description.textContent = product.desc;
         }
       } else {
-        if (product.descFull != null) {
-          if (description) description.textContent = descFull;
+        if (product.desFull != null) {
+          if (description) description.textContent = desFull;
         } else {
           description.textContent = "";
         }
