@@ -186,14 +186,13 @@ window.onload = () => {
       var slash = /\\/;
       if (product.altImg != null) {
         var imgArr = product.altImg;
-        images[0] = "url(" + slash + product.img + ")";
-        let ii = 1;
+        let ii = 0;
         while (ii < imgArr.length) {
-          images[ii] = "url(" + slash + imgArr[ii - 1] + ")";
+          images[ii] = imgArr[ii];
           ii++;
         }
       } else {
-        images[0] = "url(" + slash + product.img + ")";
+        images[0] = product.img;
       } if (images.length !== 0) {
 
         if (images.length <= 1) {
@@ -210,7 +209,7 @@ window.onload = () => {
           slide.style.transition = 'transform 500ms ease 0s';
         });
 
-        slides = [...document.querySelectorAll('[data-cms="slide"]')];
+        //slides = [...document.querySelectorAll('[data-cms="slide"]')];
 
         const parentWidth = parent.offsetWidth;
         const maxX = (parentWidth * (slides.length)) * -1;
