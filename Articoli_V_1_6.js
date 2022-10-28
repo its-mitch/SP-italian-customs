@@ -359,4 +359,19 @@ window.onload = () => {
 
 
   })();
+  if(typeof makes==undefined || typeof models==undefined || typeof years==undefined || typeof globVariants==undefined || makes==null || moels==null || years==null || globVariants==null){
+    var options = options || {};
+        options["formArticolo"] = {};
+        options["formArticolo"]["Marca"] =  "" ;
+        options["formArticolo"]["Modello"] =  "" ;
+        options["formArticolo"]["Anno"] =  "" ;
+        options["formArticolo"]["Variant"] =  "" ;
+    }else{
+    var options = options || {};
+        options["formArticolo"] = {};
+        options["formArticolo"]["Marca"] =  makes ;
+        options["formArticolo"]["Modello"] =  models ;
+        options["formArticolo"]["Anno"] =  years ;
+        options["formArticolo"]["Variant"] =  globVariants ;
+    }
 }
