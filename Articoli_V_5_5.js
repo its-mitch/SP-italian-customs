@@ -128,11 +128,15 @@ var globalCode;
 
   };
 
-  const altImages=document.querySelector('[data-element="alt-images"]');
-  altImages.onclick = function(){
-    const mainImg=document.querySelector('[data-element="main-image"]');
-    mainImg.src=altImages.src;
-  };
+  var altClass=document.getElementsByClassName("alt-image");
+  for(var i = 0; i < altClass.length; i++) {
+    (function(index) {
+      altClass[index].addEventListener("click", function() {
+        var mainImg=document.querySelector('[data-element="main-img"]');
+        mainImg.src=altClass[index].src;
+       })
+    })(i);
+  }
 
   /**
    * Creates an item from the template element.
