@@ -28,6 +28,7 @@ var globalCode;
           })
         }
       }
+      var mImg=document.querySelector('[data-element="main-img"]');
       if (models != null) {
         if (models[0] == "Universale") {
           document.getElementById("model-wrap").setAttribute("style", "display:none");
@@ -126,12 +127,6 @@ var globalCode;
 
     return data;
 
-  };
-
-  function changeImage(){
-    var currentLink=$(this).attr('src');
-    const mainImg = document.querySelector('[data-element="main-img"]');
-    mainImg.src=currentLink;
   };
 
   /**
