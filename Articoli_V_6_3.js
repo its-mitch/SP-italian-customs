@@ -128,7 +128,11 @@ var globalCode;
 
   };
 
-
+  function changeImage(){
+    var currentLink=$(this).attr('src');
+    const mainImg = document.querySelector('[data-element="main-img"]');
+    mainImg.src=currentLink;
+  };
 
   /**
    * Creates an item from the template element.
@@ -356,11 +360,7 @@ if (typeof makes == undefined || typeof models == undefined || typeof years == u
   options["formArticolo"]["Variant"] = globVariants;
 }
 
-function changeImage(){
-  var currentLink=$(this).attr('src');
-  const mainImg = document.querySelector('[data-element="main-img"]');
-  mainImg.src=currentLink;
-};
+
 
 /*
   var currency_symbol = '€';
