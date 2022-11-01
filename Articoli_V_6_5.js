@@ -29,6 +29,15 @@ var globalCode;
         }
       }
       var mImg=document.querySelector('[data-element="main-img"]');
+      
+      var altImages=document.querySelector('[data-element="alt-images"]');
+
+      for (var i = 0; i < altImages.length; i++) {
+        altImages[i].addEventListener('click', changeImage (altImages[i].src, mImg));
+      }
+      
+      altImages[i].addEventListener('click', changeImage ());
+
       if (models != null) {
         if (models[0] == "Universale") {
           document.getElementById("model-wrap").setAttribute("style", "display:none");
@@ -84,7 +93,10 @@ var globalCode;
         const $select = document.querySelector('#Anno');
         $select.value = cookieYear.toUpperCase();
       }
-
+      function changeImage(link, mainImg){
+        var testVar=document.querySelector('[data-element="main-img"]');
+        mainImg.src=link;
+      }
       function getCookie(name) {
         // Split cookie string and get all individual name=value pairs in an array
         var cookieArr = document.cookie.split(";");
@@ -193,7 +205,6 @@ var globalCode;
           parent.removeChild(singleImagesContainer[i]);
         } else {
           altImages[i].src = images[i];
-          altImages[i].addEventListener('click', changeImage ());
         }
         i++;
       }
