@@ -128,15 +128,7 @@ var globalCode;
 
   };
 
-  var altClass=document.getElementsByClassName("alt-image");
-  for(var i = 0; i < altClass.length; i++) {
-    (function(index) {
-      altClass[index].addEventListener("click", function() {
-        var mainImg=document.querySelector('[data-element="main-img"]');
-        mainImg.src=altClass[index].src;
-       })
-    })(i);
-  }
+  
 
   /**
    * Creates an item from the template element.
@@ -346,6 +338,12 @@ var globalCode;
 
 
 })();
+
+$('.alt-image').on('click', function(e) {
+  var link = $(this).attr('href');
+  $('.main-image').attr('href', link);
+});
+
 if (typeof makes == undefined || typeof models == undefined || typeof years == undefined || typeof globVariants == undefined || makes == null || moels == null || years == null || globVariants == null) {
   var options = options || {};
   options["formArticolo"] = {};
