@@ -65,17 +65,11 @@ var globalCode;
       const itemCode = document.getElementById("addToCart");
       const fCode = globalCode;
 
-      document.getElementById("img-slider").onmouseover = function (e) {
-        Webflow.require('slider').redraw();
-      };
-
       document.getElementById("fc-sku").value = globalCode;
-
 
       var cookieMake = getCookie("makeSelection").toUpperCase();
       var cookieModel = getCookie("modelSelection").toUpperCase();
       var cookieYear = getCookie("yearSelection").toUpperCase();
-
 
       if (cookieMake != "") {
         const $select = document.querySelector('#Marca');
@@ -89,9 +83,6 @@ var globalCode;
         const $select = document.querySelector('#Anno');
         $select.value = cookieYear.toUpperCase();
       }
-
-
-
 
       function getCookie(name) {
         // Split cookie string and get all individual name=value pairs in an array
@@ -168,8 +159,8 @@ var globalCode;
     const fCode = newItem.querySelector('[data-element="f-code"]');
 
     let slides = newItem.querySelectorAll('[data-cms="slide"]');
-
-
+    const leftArrow = document.querySelector('[data-cms="left-arrow"]');
+    const rightArrow = document.querySelector('[data-cms="right-arrow"]');
 
 
     // Populate inner elements
@@ -222,6 +213,32 @@ var globalCode;
         childImg.src = images[kk];
         kk++;
       }
+      const parentWidth = parent.offsetWidth;
+      const maxX = (parentWidth * (slides.length)) * -1;
+
+      let currentX = 0;
+
+      [leftArrow, rightArrow].forEach((arrow, i) => {
+        $(arrow).off();
+        const direction = i === 0 ? 'left' : 'right';
+        arrow.addEventListener('click', () => {
+          if (direction === 'left') {
+            if (currentX === 0) {
+              currentX = maxX + parentWidth;
+            } else {
+              currentX = currentX + parentWidth;
+            }
+          } else {
+            let newX = currentX - parentWidth;
+            if (newX === maxX) {
+              newX = 0;
+            }
+            currentX = newX;
+          }
+          slides.forEach(slide => slide.style.transform = `translateX(${currentX}px)`);
+        });
+      });
+
 
     }
     newItem.querySelector('[data-cms="slider"]').style.opacity = 1;
