@@ -221,6 +221,7 @@ var globalCode;
 
     }
     newItem.querySelector('[data-cms="slider"]').style.opacity = 1;
+    Webflow.require('slider').redraw();
 
     if (name) name.textContent = product.name;
     if (fName) fName.value = product.name;
@@ -338,7 +339,7 @@ var globalCode;
 
     return newItem;
   };
-
+  
   function onlyUnique(value, index, self) {
     return self.indexOf(value) === index;
   }
