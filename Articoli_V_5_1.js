@@ -179,11 +179,12 @@ var globalCode;
     } else {
       images[0] = product.img;
     } if (images.length !== 0) {
+      
       const multiImg=newItem.querySelector('[data-element="multi-img"]');
       const mainImg= newItem.querySelector('[data-element="main-img"]');
       mainImg.src = images[0];
       const altImages=multiImg.querySelectorAll('[data-element="alt-images"]');
-      const parent=multiImg[0].parentElement.parentElement.parentElement;
+      const parent=altImages[0].parentElement.parentElement.parentElement;
       const singleImagesContainer=parent.querySelectorAll('[data-element="single-image"]');
       let i=0;
       while (i < multiImg.length) {
