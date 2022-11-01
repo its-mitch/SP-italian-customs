@@ -191,7 +191,7 @@ var globalCode;
         if(i>=images.length){
           parent.removeChild(singleImagesContainer[i]);
         }else{
-          altImages[i].src=images[i+1];
+          altImages[i].src=images[i];
         }
         i++;
       }
