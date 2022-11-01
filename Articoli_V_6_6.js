@@ -33,11 +33,9 @@ var globalCode;
       var altImages=document.querySelector('[data-element="alt-images"]');
 
       for (var i = 0; i < altImages.length; i++) {
-        altImages[i].addEventListener('click', changeImage (altImages[i].src, mImg));
+        altImages[i].addEventListener('click', changeImage(altImages[i].src, mImg));
       }
       
-      altImages[i].addEventListener('click', changeImage ());
-
       if (models != null) {
         if (models[0] == "Universale") {
           document.getElementById("model-wrap").setAttribute("style", "display:none");
