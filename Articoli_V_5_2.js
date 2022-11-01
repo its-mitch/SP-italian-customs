@@ -181,17 +181,17 @@ var globalCode;
     } if (images.length !== 0) {
       
       const multiImg=newItem.querySelector('[data-element="multi-img"]');
-      const mainImg= newItem.querySelector('[data-element="main-img"]');
+      const mainImg=multiImg.querySelector('[data-element="main-img"]');
       mainImg.src = images[0];
       const altImages=multiImg.querySelectorAll('[data-element="alt-images"]');
       const parent=altImages[0].parentElement.parentElement.parentElement;
       const singleImagesContainer=parent.querySelectorAll('[data-element="single-image"]');
       let i=0;
-      while (i < multiImg.length) {
-        if(i>=altImages.length-1){
+      while (i < singleImagesContainer.length) {
+        if(i>=images.length){
           parent.removeChild(singleImagesContainer[i]);
         }else{
-          multiImg[i].src=altImages[i+1];
+          altImages[i].src=images[i+1];
         }
         i++;
       }
