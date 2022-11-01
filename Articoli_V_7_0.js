@@ -18,10 +18,10 @@ var globalCode;
       const products = await fetchProducts(id);
       const newItems = products.map((product) => createItem(product, itemTemplateElement));
 
-      var altImages = newItems.querySelectorAll('[data-element="alt-images"] ');
+      var altImages = newItems[0].querySelectorAll('[data-element="alt-images"] ');
 
       for (var i = 0; i < altImages.length; i) {
-        altImages[i].addEventListener('click', changeImage(altImages[i].src, newItem));
+        altImages[i].addEventListener('click', changeImage(altImages[i].src, newItems[0]));
       }
 
       await listInstance.addItems(newItems);
