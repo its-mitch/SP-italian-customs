@@ -18,7 +18,6 @@ var globalCode;
       const products = await fetchProducts(id);
       const newItems = products.map((product) => createItem(product, itemTemplateElement));
       await listInstance.addItems(newItems);
-      Webflow.require('slider').redraw();
       document.getElementById("colWrap").setAttribute("style", "opacity:1");
       if (makes != null) {
         if (makes[0] == "Universale") {
@@ -65,6 +64,10 @@ var globalCode;
       }
       const itemCode = document.getElementById("addToCart");
       const fCode = globalCode;
+
+      getElementById("img-slider").onmouseover = function (e) {
+        Webflow.require('slider').redraw();
+      };
 
       document.getElementById("fc-sku").value = globalCode;
 
@@ -339,7 +342,7 @@ var globalCode;
 
     return newItem;
   };
-  
+
   function onlyUnique(value, index, self) {
     return self.indexOf(value) === index;
   }
