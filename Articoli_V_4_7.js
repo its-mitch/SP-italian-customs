@@ -65,7 +65,7 @@ var globalCode;
       const itemCode = document.getElementById("addToCart");
       const fCode = globalCode;
 
-      getElementById("img-slider").onmouseover = function (e) {
+      document.getElementById("img-slider").onmouseover = function (e) {
         Webflow.require('slider').redraw();
       };
 
