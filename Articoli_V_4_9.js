@@ -140,7 +140,6 @@ var globalCode;
     const newItem = templateElement.cloneNode(true);
 
     // Query inner elements
-    //const image = newItem.querySelector('[data-element="image"]');
     const fImage = newItem.querySelector('[data-element="f-image"]');
     const name = newItem.querySelector('[data-element="name"]');
     const fName = newItem.querySelector('[data-element="f-name"]');
@@ -158,26 +157,18 @@ var globalCode;
     const sku = newItem.querySelector('[data-element="sku"]');
     const fCode = newItem.querySelector('[data-element="f-code"]');
 
-    let slides = newItem.querySelectorAll('[data-cms="slide"]');
-    const leftArrow = document.querySelector('[data-cms="left-arrow"]');
-    const rightArrow = document.querySelector('[data-cms="right-arrow"]');
-
-
     // Populate inner elements
 
     var defaultImage =
       "https://uploads-ssl.webflow.com/61e6e776f7b79f4f941b254e/61eb5f843eec5928ee20796b_logo_slate_grey.svg";
 
     if (product.img != null) {
-      //if (image) image.src = product.img;
       if (fImage) fImage.src = product.img;
     } else {
-      //if (image) image.src = defaultImage;
       if (fImage) fImage.src = defaultImage;
     }
 
     var images = [];
-    var slash = /\\/;
     if (product.altImg != null) {
       var imgArr = product.altImg;
       let ii = 0;
@@ -188,60 +179,24 @@ var globalCode;
     } else {
       images[0] = product.img;
     } if (images.length !== 0) {
-
-      //images.forEach((image, i) => slides[i].style.backgroundImage = 'url(\"'+image+'")');
-      let kk = 0;
-      const parent = slides[0].parentElement;
-      while (kk < slides.length) {
-        if (kk >= images.length) {
-          parent.removeChild(slides[kk]);
+      const multiImg=newItem.querySelector('[data-element="multi-img"]');
+      const mainImg= newItem.querySelector('[data-element="main-img"]');
+      mainImg.src = images[0];
+      const altImages=multiImg.querySelectorAll('[data-element="alt-images"]');
+      const parent=multiImg[0].parentElement;
+      let i=0;
+      while (i < multiImg.length) {
+        if(i>=altImages.length-1){
+          parent.removeChild(multiImg[i]);
+        }else{
+          multiImg[i].src=altImages[i+1];
         }
-        slides[kk].style.transition = 'transform 500ms ease 0s';
-        kk++;
+        i++;
       }
-      /*
-      slides.forEach((slide, i) => {
-        if (i >= images.length) {
-          parent.removeChild(slide);
-        }
-      });
-      */
-
-      kk = 0;
-      while (kk < images.length) {
-        var childImg = slides[kk].querySelector('[data-element="image"]');
-        childImg.src = images[kk];
-        kk++;
-      }
-      const parentWidth = parent.offsetWidth;
-      const maxX = (parentWidth * (slides.length)) * -1;
-
-      let currentX = 0;
-
-      [leftArrow, rightArrow].forEach((arrow, i) => {
-        $(arrow).off();
-        const direction = i === 0 ? 'left' : 'right';
-        arrow.addEventListener('click', () => {
-          if (direction === 'left') {
-            if (currentX === 0) {
-              currentX = maxX + parentWidth;
-            } else {
-              currentX = currentX + parentWidth;
-            }
-          } else {
-            let newX = currentX - parentWidth;
-            if (newX === maxX) {
-              newX = 0;
-            }
-            currentX = newX;
-          }
-          slides.forEach(slide => slide.style.transform = `translateX(${currentX}px)`);
-        });
-      });
-
-
+    }else{
+      const mainImg= newItem.querySelector('[data-element="main-img"]');
+      mainImg.src = defaultImage;
     }
-    newItem.querySelector('[data-cms="slider"]').style.opacity = 1;
 
     if (name) name.textContent = product.name;
     if (fName) fName.value = product.name;
