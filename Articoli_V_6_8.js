@@ -107,18 +107,25 @@ var globalCode;
     },
   ]);
 
-  function changeImage(link, templateElement){
 
-    const [listInstance] = listInstances;
-    listInstance.clearItems();
-    const newItem = templateElement.cloneNode(true);
-    const mainImg = newItem.querySelector('[data-element="main-img"]');
-    mainImg.src=link;
+  window.fsAttributes = window.fsAttributes || [];
+  window.fsAttributes.push([
+    async (listInstances) => {
 
-    listInstance.addItems(newItems);
+      function changeImage(link, templateElement){
 
-  }
+        const [listInstance] = listInstances;
+        listInstance.clearItems();
+        const newItem = templateElement.cloneNode(true);
+        const mainImg = newItem.querySelector('[data-element="main-img"]');
+        mainImg.src=link;
+    
+        listInstance.addItems(newItems);
+    
+      }
 
+    },
+  ]);
   /**
    * Fetches fake products from Fake Store API.
    * @returns An array of {@link Product}.
