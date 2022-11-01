@@ -17,6 +17,13 @@ var globalCode;
       let id = getUrlParameter('id');
       const products = await fetchProducts(id);
       const newItems = products.map((product) => createItem(product, itemTemplateElement));
+
+      var altImages = newItems.querySelectorAll('[data-element="alt-images"] ');
+
+      for (var i = 0; i < altImages.length; i) {
+        altImages[i].addEventListener('click', changeImage(altImages[i].src, newItem));
+      }
+
       await listInstance.addItems(newItems);
       document.getElementById("colWrap").setAttribute("style", "opacity:1");
       if (makes != null) {
@@ -28,7 +35,7 @@ var globalCode;
           })
         }
       }
-      
+
       if (models != null) {
         if (models[0] == "Universale") {
           document.getElementById("model-wrap").setAttribute("style", "display:none");
@@ -84,7 +91,19 @@ var globalCode;
         const $select = document.querySelector('#Anno');
         $select.value = cookieYear.toUpperCase();
       }
-      
+
+      function changeImage(link, templateElement) {
+
+        const [listInstance] = listInstances;
+        listInstance.clearItems();
+        const newItem = templateElement.cloneNode(true);
+        const mainImg = newItem.querySelector('[data-element="main-img"]');
+        mainImg.src = link;
+
+        listInstance.addItems(newItems);
+
+      }
+
       function getCookie(name) {
         // Split cookie string and get all individual name=value pairs in an array
         var cookieArr = document.cookie.split(";");
@@ -107,25 +126,6 @@ var globalCode;
     },
   ]);
 
-
-  window.fsAttributes = window.fsAttributes || [];
-  window.fsAttributes.push([
-    async (listInstances) => {
-
-      function changeImage(link, templateElement){
-
-        const [listInstance] = listInstances;
-        listInstance.clearItems();
-        const newItem = templateElement.cloneNode(true);
-        const mainImg = newItem.querySelector('[data-element="main-img"]');
-        mainImg.src=link;
-    
-        listInstance.addItems(newItems);
-    
-      }
-
-    },
-  ]);
   /**
    * Fetches fake products from Fake Store API.
    * @returns An array of {@link Product}.
@@ -335,10 +335,6 @@ var globalCode;
     globalCode = product.code;
 
     const altImages = newItem.querySelectorAll('[data-element="alt-images"]');
-
-    for( var i = 0; i < altImages.length; i){
-      altImages[i].addEventListener('click', changeImage(altImages[i].src, newItem));
-    }
 
     return newItem;
   };
