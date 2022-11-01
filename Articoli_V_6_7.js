@@ -28,13 +28,6 @@ var globalCode;
           })
         }
       }
-      var mImg=document.querySelector('[data-element="main-img"]');
-      
-      var altImages=document.querySelector('[data-element="alt-images"]');
-
-      for (var i = 0; i < altImages.length; i++) {
-        altImages[i].addEventListener('click', changeImage(altImages[i].src, mImg));
-      }
       
       if (models != null) {
         if (models[0] == "Universale") {
@@ -91,10 +84,7 @@ var globalCode;
         const $select = document.querySelector('#Anno');
         $select.value = cookieYear.toUpperCase();
       }
-      function changeImage(link, mainImg){
-        var testVar=document.querySelector('[data-element="main-img"]');
-        mainImg.src=link;
-      }
+      
       function getCookie(name) {
         // Split cookie string and get all individual name=value pairs in an array
         var cookieArr = document.cookie.split(";");
@@ -116,6 +106,18 @@ var globalCode;
       }
     },
   ]);
+
+  function changeImage(link, templateElement){
+
+    const [listInstance] = listInstances;
+    listInstance.clearItems();
+    const newItem = templateElement.cloneNode(true);
+    const mainImg = newItem.querySelector('[data-element="main-img"]');
+    mainImg.src=link;
+
+    listInstance.addItems(newItems);
+
+  }
 
   /**
    * Fetches fake products from Fake Store API.
@@ -325,6 +327,12 @@ var globalCode;
 
     globalCode = product.code;
 
+    const altImages = newItem.querySelectorAll('[data-element="alt-images"]');
+
+    for( var i = 0; i < altImages.length; i){
+      altImages[i].addEventListener('click', changeImage(altImages[i].src, newItem));
+    }
+
     return newItem;
   };
 
@@ -344,7 +352,6 @@ var globalCode;
     // Return updated or original number.
     return value;
   }
-
 
 })();
 
