@@ -20,7 +20,7 @@ var globalCode;
 
       var altImages = newItems[0].querySelectorAll('[data-element="alt-images"] ');
 
-      for (var i = 0; i < altImages.length; i) {
+      for (var i = 0; i < altImages.length; i++) {
         altImages[i].addEventListener('click', changeImage(altImages[i].src, newItems[0]));
       }
 
