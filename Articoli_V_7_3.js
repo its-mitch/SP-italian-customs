@@ -94,7 +94,7 @@ var globalCode;
 
       function changeImage() {
         var imigLink=$(this).attr('src');
-        var mainpic=document.getElementsById("main-pic");
+        var mainpic=document.getElementById("main-pic");
         mainpic=imigLink;
       }
 
@@ -113,7 +113,6 @@ var globalCode;
             return decodeURIComponent(cookiePair[1]);
           }
         }
-
         // Return null if not found
         return null;
       }
