@@ -194,6 +194,9 @@ var globalCode;
           parent.removeChild(singleImagesContainer[i]);
         } else {
           altImages[i].src = images[i];
+          altImages[i].addEventListener('click', function (){
+            mainImg.src = images[i];
+          });
         }
         i++;
       }
@@ -359,12 +362,6 @@ if (typeof makes == undefined || typeof models == undefined || typeof years == u
   options["formArticolo"]["Anno"] = years;
   options["formArticolo"]["Variant"] = globVariants;
 }
-
-$(".single-image-container").click(function () {
-  var mainImg=document.querySelector('[data-element="main-img"]');
-  var altImg=$(this).querySelector('[data-element="alt-image"]');
-  mainImg.src=altImg.src;
-});
 
 
 /*
