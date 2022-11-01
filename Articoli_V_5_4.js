@@ -128,6 +128,12 @@ var globalCode;
 
   };
 
+  const altImages=document.querySelector('[data-element="alt-images"]');
+  altImages.onclick = function(){
+    const mainImg=document.querySelector('[data-element="main-image"]');
+    mainImg.src=altImages.src;
+  };
+
   /**
    * Creates an item from the template element.
    * @param product The product data to create the item from.
