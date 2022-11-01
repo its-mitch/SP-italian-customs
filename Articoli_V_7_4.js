@@ -21,7 +21,9 @@ var globalCode;
       var altImages = newItems[0].querySelectorAll('[data-element="alt-images"] ');
 
       for (var i = 0; i < altImages.length; i++) {
-        altImages[i].addEventListener('click', changeImage());
+        altImages[i].addEventListener('click', function() {
+          changeImage(this);
+      });
       }
 
       await listInstance.addItems(newItems);
@@ -92,8 +94,8 @@ var globalCode;
         $select.value = cookieYear.toUpperCase();
       }
 
-      function changeImage() {
-        var imigLink=$(this).attr('src');
+      function changeImage(imgElement) {
+        var imigLink=imgElement.src;
         var mainpic=document.getElementById("main-pic");
         mainpic=imigLink;
       }
