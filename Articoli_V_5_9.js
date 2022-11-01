@@ -128,7 +128,7 @@ var globalCode;
 
   };
 
-  
+
 
   /**
    * Creates an item from the template element.
@@ -181,24 +181,24 @@ var globalCode;
     } else {
       images[0] = product.img;
     } if (images.length !== 0) {
-      
-      const multiImg=newItem.querySelector('[data-element="multi-img"]');
-      const mainImg=multiImg.querySelector('[data-element="main-img"]');
+
+      const multiImg = newItem.querySelector('[data-element="multi-img"]');
+      const mainImg = multiImg.querySelector('[data-element="main-img"]');
       mainImg.src = images[0];
-      const altImages=multiImg.querySelectorAll('[data-element="alt-images"]');
-      const parent=altImages[0].parentElement.parentElement.parentElement;
-      const singleImagesContainer=parent.querySelectorAll('[data-element="single-image"]');
-      let i=0;
+      const altImages = multiImg.querySelectorAll('[data-element="alt-images"]');
+      const parent = altImages[0].parentElement.parentElement.parentElement;
+      const singleImagesContainer = parent.querySelectorAll('[data-element="single-image"]');
+      let i = 0;
       while (i < singleImagesContainer.length) {
-        if(i>=images.length){
+        if (i >= images.length) {
           parent.removeChild(singleImagesContainer[i]);
-        }else{
-          altImages[i].src=images[i];
+        } else {
+          altImages[i].src = images[i];
         }
         i++;
       }
-    }else{
-      const mainImg= newItem.querySelector('[data-element="main-img"]');
+    } else {
+      const mainImg = newItem.querySelector('[data-element="main-img"]');
       mainImg.src = defaultImage;
     }
 
@@ -339,7 +339,7 @@ var globalCode;
 
 })();
 
-$('.alt-image').on('click', function(e) {
+$('.alt-image').on('click', function (e) {
   var link = $(this).attr('href');
   $('.main-image').attr('href', link);
 });
@@ -359,6 +359,14 @@ if (typeof makes == undefined || typeof models == undefined || typeof years == u
   options["formArticolo"]["Anno"] = years;
   options["formArticolo"]["Variant"] = globVariants;
 }
+
+$(".single-image-container").click(function () {
+  var mainImg=document.querySelector('[data-element="main-img"]');
+  var altImg=$(this).querySelector('[data-element="alt-image"]');
+  mainImg.src=altImg.src;
+});
+
+
 /*
   var currency_symbol = '€';
   var modifier_text_summary = true;
