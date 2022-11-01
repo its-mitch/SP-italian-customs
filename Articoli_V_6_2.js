@@ -358,7 +358,7 @@ if (typeof makes == undefined || typeof models == undefined || typeof years == u
 
 function changeImage(){
   var currentLink=$(this).attr('src');
-  var mainImg=document.querySelector('[data-element="main-img"]');
+  const mainImg = document.querySelector('[data-element="main-img"]');
   mainImg.src=currentLink;
 };
 
