@@ -21,7 +21,7 @@ var globalCode;
       var altImages = newItems[0].querySelectorAll('[data-element="alt-images"] ');
 
       for (var i = 0; i < altImages.length; i++) {
-        altImages[i].addEventListener('click', changeImage(altImages[i].src, newItems[0]));
+        altImages[i].addEventListener('click', changeImage());
       }
 
       await listInstance.addItems(newItems);
@@ -92,16 +92,10 @@ var globalCode;
         $select.value = cookieYear.toUpperCase();
       }
 
-      function changeImage(link, templateElement) {
-
-        const [listInstance] = listInstances;
-        listInstance.clearItems();
-        const newItem = templateElement.cloneNode(true);
-        const mainImg = newItem.querySelector('[data-element="main-img"]');
-        mainImg.src = link;
-
-        listInstance.addItems(newItems);
-
+      function changeImage() {
+        var imigLink=$(this).attr('src');
+        var mainpic=document.getElementsById("main-pic");
+        mainpic=imigLink;
       }
 
       function getCookie(name) {
