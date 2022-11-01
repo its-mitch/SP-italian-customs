@@ -18,6 +18,7 @@ var globalCode;
       const products = await fetchProducts(id);
       const newItems = products.map((product) => createItem(product, itemTemplateElement));
       await listInstance.addItems(newItems);
+      Webflow.require('slider').redraw();
       document.getElementById("colWrap").setAttribute("style", "opacity:1");
       if (makes != null) {
         if (makes[0] == "Universale") {
@@ -221,7 +222,6 @@ var globalCode;
 
     }
     newItem.querySelector('[data-cms="slider"]').style.opacity = 1;
-    Webflow.require('slider').redraw();
 
     if (name) name.textContent = product.name;
     if (fName) fName.value = product.name;
