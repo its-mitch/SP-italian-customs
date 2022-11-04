@@ -228,12 +228,12 @@ var globalCode;
       if (Array.isArray(product.Comp)) {
         compArr = product.Comp;
       } else {
-        compArr = product.Comp.split("<>");
+        compArr = product.Comp.split(" <> ");
       }
       var i = 0;
       while (i < compArr.length) {
         let compParts = compArr[i].split(" ");
-        let compYears = compParts[compParts.length - 2];
+        let compYears = compParts[compParts.length - 1];
         let charCount=compYears.split("");
         let yearStart = 0;
         let yearEnd = 0;
@@ -245,7 +245,7 @@ var globalCode;
           yearEnd = 2023;
         }
         let yearIndex=0;
-        while (yearStart < yearEnd) {
+        while (yearStart <= yearEnd) {
           yearSequence[yearIndex] = yearStart;
           yearIndex++;
           yearStart++;
