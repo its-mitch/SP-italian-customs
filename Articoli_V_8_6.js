@@ -298,7 +298,7 @@ var globalCode;
     if (producer) producer.textContent = product.brand;
     if (product.desc != null) {
       if (product.desFull != null) {
-        let desFull = product.desc + "\n\n" + product.desFull;
+        let desFull = product.desc + product.desFull;
         if (description) description.textContent = desFull;
       } else {
         if (description) description.textContent = product.desc;
