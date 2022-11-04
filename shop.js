@@ -98,30 +98,32 @@
                 compArr = product.Comp;
             } else {
                 compArr = product.Comp.split("<>");
-
             }
             var i = 0;
             while (i < compArr.length) {
                 let compParts = compArr[i].split(" ");
-                let compYears = compParts[compParts.length - 1];
+                let compYears = compParts[compParts.length - 2];
+                let charCount = compYears.split("");
                 let yearStart = 0;
                 let yearEnd = 0;
-                if (compYears.length > 4) {
+                if (charCount.length > 4) {
                     yearStart = compYears.slice(0, 4);
                     yearEnd = compYears.slice(4);
                 } else {
                     yearStart = compYears;
                     yearEnd = 2023;
                 }
+                let yearIndex = 0;
                 while (yearStart < yearEnd) {
-                    yearSequence[yearStart] = yearStart;
+                    yearSequence[yearIndex] = yearStart;
+                    yearIndex++;
                     yearStart++;
                 }
                 makeSequence[i] = compParts[0];
                 let j = 1;
                 while (j < compParts.length - 1) {
                     modelSequence[i] = modelSequence[i] + " " + compParts[j];
-                    j++
+                    j++;
                 }
                 i++;
             }
