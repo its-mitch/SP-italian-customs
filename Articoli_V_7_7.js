@@ -234,9 +234,10 @@ var globalCode;
       while (i < compArr.length) {
         let compParts = compArr[i].split(" ");
         let compYears = compParts[compParts.length - 1];
+        let charCount=compYears.split("");
         let yearStart = 0;
         let yearEnd = 0;
-        if (compYears.length > 4) {
+        if (charCount.length > 4) {
           yearStart = compYears.slice(0, 4);
           yearEnd = compYears.slice(4);
         } else {

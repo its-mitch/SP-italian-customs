@@ -161,7 +161,7 @@
                 years = "Universale";
             }
         }
-        if (producer) producer.textContent = product.producer;
+        if (producer) producer.textContent = product.Brand;
         if (button) button.setAttribute('href', 'https://sp-customs-2.webflow.io/articoli?id=' + product._id);
         //if (code) code.textContent = product.code;
         //if (year) year.textContent = product.year;
