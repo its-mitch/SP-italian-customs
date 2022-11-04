@@ -244,14 +244,17 @@ var globalCode;
           yearStart = compYears;
           yearEnd = 2023;
         }
+        let yearIndex=0;
         while (yearStart < yearEnd) {
-          yearSequence[yearStart] = yearStart;
+          yearSequence[yearIndex] = yearStart;
+          yearIndex++;
           yearStart++;
         }
         makeSequence[i] = compParts[0];
         let j = 1;
         while (j < compParts.length - 1) {
           modelSequence[i] = modelSequence[i] + " " + compParts[j];
+          j++;
         }
         i++;
       }
