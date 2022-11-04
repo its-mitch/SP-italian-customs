@@ -226,13 +226,13 @@ var globalCode;
       let modelSequence = [];
       let compArray = [];
       if (Array.isArray(product.Comp)) {
-        compArr = product.Comp;
+        compArray = product.Comp;
       } else {
-        compArr = product.Comp.split(" <> ");
+        compArray = product.Comp.split(" <> ");
       }
       var i = 0;
-      while (i < compArr.length) {
-        let compParts = compArr[i].split(" ");
+      while (i < compArray.length) {
+        let compParts = compArray[i].split(" ");
         let compYears = compParts[compParts.length - 1];
         let charCount=compYears.split("");
         let yearStart = 0;
