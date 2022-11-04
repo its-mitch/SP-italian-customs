@@ -95,13 +95,13 @@
             let modelSequence = [];
             let compArray = [];
             if (Array.isArray(product.Comp)) {
-                compArr = product.Comp;
+                compArray = product.Comp;
             } else {
-                compArr = product.Comp.split(" <> ");
+                compArray = product.Comp.split(" <> ");
             }
             var i = 0;
-            while (i < compArr.length) {
-                let compParts = compArr[i].split(" ");
+            while (i < compArray.length) {
+                let compParts = compArray[i].split(" ");
                 let compYears = compParts[compParts.length - 1];
                 let charCount = compYears.split("");
                 let yearStart = 0;
@@ -122,9 +122,13 @@
                 makeSequence[i] = compParts[0];
                 let j = 1;
                 while (j < compParts.length - 1) {
-                    modelSequence[i] = modelSequence[i] + " " + compParts[j];
+                    if(modelSequence[i]!=undefined){
+                      modelSequence[i] = modelSequence[i] + " " + compParts[j];
+                    }else{
+                      modelSequence[i] = compParts[j];
+                    }
                     j++;
-                }
+                  }
                 i++;
             }
             make.textContent = makeSequence;

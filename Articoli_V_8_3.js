@@ -253,7 +253,11 @@ var globalCode;
         makeSequence[i] = compParts[0];
         let j = 1;
         while (j < compParts.length - 1) {
-          modelSequence[i] = makeSequence[i] + " " + compParts[j];
+          if(modelSequence[i]!=undefined){
+            modelSequence[i] = modelSequence[i] + " " + compParts[j];
+          }else{
+            modelSequence[i] = compParts[j];
+          }
           j++;
         }
         i++;
