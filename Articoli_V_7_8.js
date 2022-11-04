@@ -233,7 +233,7 @@ var globalCode;
       var i = 0;
       while (i < compArr.length) {
         let compParts = compArr[i].split(" ");
-        let compYears = compParts[compParts.length - 1];
+        let compYears = compParts[compParts.length - 2];
         let charCount=compYears.split("");
         let yearStart = 0;
         let yearEnd = 0;
