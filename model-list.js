@@ -29,7 +29,7 @@ makeArr=makeArr.filter(onlyUnique);
 
 Array.from(subcatArray).forEach(element => {
   let text=element[0]+"-"+element[1];
-  $('#subcat-filter').append($('<option>', {value:text, text:text}));
+  $('#subcat-filter').append($('<option>', {value:element[1], text:text}));
   })
 
 
