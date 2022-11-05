@@ -262,11 +262,11 @@ var globalCode;
         }
         i++;
       }
-      make.textContent = makeSequence;
+      make.textContent = makeSequence.filter(onlyUnique);
       makes = makeSequence.filter(onlyUnique);
-      model.textContent = modelSequence;
+      model.textContent = modelSequence.filter(onlyUnique);
       models = modelSequence.filter(onlyUnique);
-      year.textContent = yearSequence;
+      year.textContent = yearSequence.filter(onlyUnique);
       years = yearSequence.filter(onlyUnique);
     } else {
       if (product.make != null) {
