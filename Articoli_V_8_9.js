@@ -21,9 +21,9 @@ var globalCode;
       var altImages = newItems[0].querySelectorAll('[data-element="alt-images"] ');
 
       for (var i = 0; i < altImages.length; i++) {
-        altImages[i].addEventListener('click', function() {
+        altImages[i].addEventListener('click', function () {
           changeImage(this);
-      });
+        });
       }
 
       await listInstance.addItems(newItems);
@@ -95,9 +95,9 @@ var globalCode;
       }
 
       function changeImage(imgElement) {
-        var imigLink=imgElement.src;
-        var mainpic=document.getElementById("main-pic");
-        mainpic.src=imigLink;
+        var imigLink = imgElement.src;
+        var mainpic = document.getElementById("main-pic");
+        mainpic.src = imigLink;
       }
 
       function getCookie(name) {
@@ -233,25 +233,31 @@ var globalCode;
         compArray = product.Comp.split(" <> ");
       }
 
-      
+
       var i = 0;
       while (i < compArray.length) {
 
         let compParts = compArray[i].split(" ");
         let compYears = compParts[compParts.length - 1];
-        let charCount=compYears.split("");
+        let charCount = compYears.split("");
         let yearStart = 0;
         let yearEnd = 0;
         if (charCount.length > 4) {
           yearStart = compYears.slice(0, 4);
           yearEnd = compYears.slice(4);
-          compText.textContent=compText.textContent+" "+compParts[0]+" "+compParts[1]+" "+yearStart+"-"+yearEnd;
+          for (let n = 0; n < compParts.length - 1; n++) {
+            compText.textContent = compText.textContent + " " + compParts[n];
+          }
+          compText.textContent = compText.textContent + " " + yearStart + "-" + yearEnd + "\n";
         } else {
           yearStart = compYears;
           yearEnd = 2023;
-          compText.textContent=compText.textContent+" "+compParts[0]+" "+compParts[1]+" "+yearStart+"-"+yearEnd;
+          for (let n = 0; n < compParts.length - 1; n++) {
+            compText.textContent = compText.textContent + " " + compParts[n];
+          }
+          compText.textContent = compText.textContent + " " + yearStart + "-" + yearEnd + "\n";
         }
-        let yearIndex=0;
+        let yearIndex = 0;
         while (yearStart <= yearEnd) {
           yearSequence[yearIndex] = yearStart;
           yearIndex++;
@@ -260,9 +266,9 @@ var globalCode;
         makeSequence[i] = compParts[0];
         let j = 1;
         while (j < compParts.length - 1) {
-          if(modelSequence[i]!=undefined){
+          if (modelSequence[i] != undefined) {
             modelSequence[i] = modelSequence[i] + " " + compParts[j];
-          }else{
+          } else {
             modelSequence[i] = compParts[j];
           }
           j++;
