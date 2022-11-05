@@ -171,6 +171,8 @@ var globalCode;
     const fPrice = newItem.querySelector('[data-element="price"]');
     const sku = newItem.querySelector('[data-element="sku"]');
     const fCode = newItem.querySelector('[data-element="f-code"]');
+    const compText = newItem.querySelector('[data-element="comp"]');
+
 
     // Populate inner elements
 
@@ -230,8 +232,11 @@ var globalCode;
       } else {
         compArray = product.Comp.split(" <> ");
       }
+
+      
       var i = 0;
       while (i < compArray.length) {
+
         let compParts = compArray[i].split(" ");
         let compYears = compParts[compParts.length - 1];
         let charCount=compYears.split("");
@@ -240,9 +245,11 @@ var globalCode;
         if (charCount.length > 4) {
           yearStart = compYears.slice(0, 4);
           yearEnd = compYears.slice(4);
+          compText.textContent=compText.textContent+" "+compParts[0]+" "+compParts[1]+" "+yearStart+"-"+yearEnd;
         } else {
           yearStart = compYears;
           yearEnd = 2023;
+          compText.textContent=compText.textContent+" "+compParts[0]+" "+compParts[1]+" "+yearStart+"-"+yearEnd;
         }
         let yearIndex=0;
         while (yearStart <= yearEnd) {
