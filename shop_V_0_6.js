@@ -13,6 +13,7 @@
             
             const products = await fetchProducts();
             const storedProducts = products;
+            window.localStorage.setItem("storedProducts", storedProducts);
 
             const newItems = products.map((product) => createItem(product, itemTemplateElement));
             await listInstance.addItems(newItems);
