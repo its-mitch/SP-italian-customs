@@ -10,6 +10,7 @@
             const [firstItem] = listInstance.items;
             listInstance.clearItems();
             const itemTemplateElement = firstItem.element;
+            const storedProducts = window.localStorage.getItem('storedProducts');
             const products = await fetchProducts();
             const newItems = products.map((product) => createItem(product, itemTemplateElement));
             await listInstance.addItems(newItems);
