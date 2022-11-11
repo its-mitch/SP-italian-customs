@@ -12,7 +12,7 @@
             const itemTemplateElement = firstItem.element;
             
             const products = await fetchProducts();
-            const storProd=window.localStorage.getItem("storedProducts");
+            //const storProd=window.localStorage.getItem("storedProducts");
             
             const newItems = products.map((product) => createItem(product, itemTemplateElement));
             await listInstance.addItems(newItems);
@@ -47,9 +47,9 @@
             const response = await fetch('https://data.mongodb-api.com/app/sp-gaodj/endpoint/sp_shop_api');
             const data = await response.json();
 
-            var storedProd=JSON.stringify(data);
+            //var storedProd=JSON.stringify(data);
 
-            window.localStorage.setItem("storedProducts", storedProd);
+            //window.localStorage.setItem("storedProducts", storedProd);
 
             return data;
         } catch (error) {
