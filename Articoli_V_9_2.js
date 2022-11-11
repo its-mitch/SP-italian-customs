@@ -173,7 +173,20 @@ var globalCode;
     const fCode = newItem.querySelector('[data-element="f-code"]');
     const compText = newItem.querySelector('[data-element="comp"]');
 
+    //breadcrumbs creation
+    const crumbCatName = document.querySelector('[crumbName="categoria"]');
+    const crumbCatLink = document.querySelector('[ccrumbLink="categoria"]');
+    const crumbSubName = document.querySelector('[crumbName="sottocategoria"]');
+    const crumbSubLink = document.querySelector('[ccrumbLink="sottocategoria"]');
 
+    crumbCatName.textContent = prodcut.category;
+    crumbSubName.textContent = product.subcategory;
+
+    var link1=product.category.replace(" ","-");
+    var link2=product.subcategory.replace(" ","-");
+
+    crumbCatLink.setAttribute('href','https://sp-customs-2.webflow.io/sottocategorie/'+link1);
+    crumbSubLink.setAttribute('href','https://sp-customs-2.webflow.io/sottocategorie/'+link2);
     // Populate inner elements
 
     var defaultImage =

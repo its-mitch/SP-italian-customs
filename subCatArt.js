@@ -10,10 +10,10 @@
             const [firstItem] = listInstance.items;
             listInstance.clearItems();
             const itemTemplateElement = firstItem.element;
-            
+
             const products = await fetchProducts();
             //const storProd=window.localStorage.getItem("storedProducts");
-            
+
             const newItems = products.map((product) => createItem(product, itemTemplateElement));
             await listInstance.addItems(newItems);
             //window.fsAttributes.cmsfilter.init();
@@ -41,8 +41,8 @@
      * Fetches fake products from Fake Store API.
      * @returns An array of {@link Product}.
      */
-    
-     const fetchProducts = async () => {
+
+    const fetchProducts = async () => {
         try {
             const response = await fetch('https://data.mongodb-api.com/app/sp-gaodj/endpoint/sp_shop_api');
             const data = await response.json();
@@ -80,6 +80,24 @@
         const price = newItem.querySelector('[data-element="price"]');
         const year = newItem.querySelector('[data-element="year"]');
 
+        //breadcrumbs creation
+        const crumbCatName = document.querySelector('[crumbName="categoria"]');
+        const crumbCatLink = document.querySelector('[ccrumbLink="categoria"]');
+        const crumbSubName = document.querySelector('[crumbName="sottocategoria"]');
+        const crumbSubLink = document.querySelector('[ccrumbLink="sottocategoria"]');
+
+        crumbCatName.textContent = prodcut.category;
+        crumbSubName.textContent = product.subcategory;
+
+        var link1=product.category.replace(" ","-");
+        var link2=product.subcategory.replace(" ","-");
+
+        crumbCatLink.setAttribute('href','https://sp-customs-2.webflow.io/sottocategorie/'+link1);
+        crumbSubLink.setAttribute('href','https://sp-customs-2.webflow.io/sottocategorie/'+link2);
+
+        //button.setAttribute('href', 'https://sp-customs-2.webflow.io/articoli?id=' + product._id);
+
+        // https://sp-customs-2.webflow.io/sottocategorie/frizione-anti-saltellamento
 
         // Populate inner elements
         var defaultImage =
