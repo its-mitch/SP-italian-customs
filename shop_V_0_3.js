@@ -38,10 +38,13 @@
      * Fetches fake products from Fake Store API.
      * @returns An array of {@link Product}.
      */
-    const fetchProducts = async () => {
+    
+     const fetchProducts = async () => {
         try {
             const response = await fetch('https://data.mongodb-api.com/app/sp-gaodj/endpoint/sp_shop_api');
             const data = await response.json();
+
+            window.localStorage.setItem("storedProducts", data);
 
             return data;
         } catch (error) {
@@ -71,8 +74,6 @@
         const button = newItem.querySelector('[data-element="link"]');
         const price = newItem.querySelector('[data-element="price"]');
         const year = newItem.querySelector('[data-element="year"]');
-
-
 
 
         // Populate inner elements
@@ -122,13 +123,13 @@
                 makeSequence[i] = compParts[0];
                 let j = 1;
                 while (j < compParts.length - 1) {
-                    if(modelSequence[i]!=undefined){
-                      modelSequence[i] = modelSequence[i] + " " + compParts[j];
-                    }else{
-                      modelSequence[i] = compParts[j];
+                    if (modelSequence[i] != undefined) {
+                        modelSequence[i] = modelSequence[i] + " " + compParts[j];
+                    } else {
+                        modelSequence[i] = compParts[j];
                     }
                     j++;
-                  }
+                }
                 i++;
             }
             make.textContent = makeSequence;
@@ -199,3 +200,119 @@
     }
 
 })();
+
+
+let compMatrix = [];
+compMatrix[0] = [];
+
+let makeArr = [];
+
+let arrMod = modelString.split("<");
+
+//console.table(arrMod);
+let k = 0;
+while (k < arrMod.length) {
+    let oneModel = arrMod[k].split(">");
+    compMatrix[k] = [];
+    compMatrix[k] = oneModel;
+    makeArr[k] = oneModel[0];
+    k++;
+}
+
+makeArr = makeArr.filter(onlyUnique);
+
+function onlyUnique(value, index, self) {
+    return self.indexOf(value) === index;
+}
+
+Array.from(subcatArray).forEach(element => {
+    let text = element[0] + "-" + element[1];
+    $('#subcat-filter').append($('<option>', { value: element[1], text: text }));
+})
+
+
+//populate makes
+//console.log(makeArr);
+makeArr.sort();
+Array.from(makeArr).forEach(element => {
+    $('#make-filter').append($('<option>', { value: element, text: element }));
+})
+
+
+let makeSel = document.getElementById("make-filter");
+let modelSel = document.getElementById("model-filter");
+let yearSel = document.getElementById("year-filter");
+
+//populate models
+let uniqueModels = [];
+makeSel.onchange = function () {
+    uniqueModels = [];
+    makeSel.selectedOptions;
+    while (modelSel.options.length > 0) {
+        modelSel.remove(0);
+    }
+    for (i = 0; i < compMatrix.length; i++) {
+        if (makeSel.selectedOptions[0].innerText == compMatrix[i][0]) {
+            uniqueModels[i] = compMatrix[i][1];
+        }
+    }
+
+    document.cookie = "makeSelection=" + makeSel.selectedOptions[0].innerText + "; path=/articoli"
+
+    uniqueModels = uniqueModels.filter(onlyUnique).sort();
+    uniqueModels.forEach(element => {
+        $('#model-filter').append($('<option>', { value: element, text: element }));
+    });
+    if (makeSel.selectedOptions != undefined) {
+        let supp = makeSel.selectedOptions[0].value;
+        let kv = "makeSelection=" + supp;
+        document.cookie = kv;
+    }
+    document.cookie = "modelSelection=";
+    document.cookie = "yearSelection=";
+}
+
+
+
+//populate years
+let uniqueYears = [];
+modelSel.onchange = function () {
+    uniqueYears = [];
+    yearSel.selectedOptions;
+    while (yearSel.options.length > 0) {
+        yearSel.remove(0);
+    }
+    for (i = 0; i < compMatrix.length; i++) {
+        if (makeSel.selectedOptions[0].innerText == compMatrix[i][0] && modelSel.selectedOptions[0].innerText == compMatrix[i][1]) {
+            let yearRange = compMatrix[i][2].split("-");
+            let yearCount = yearRange[0] * 1;
+            let k = 0;
+            while (yearCount <= yearRange[1 * 1]) {
+                uniqueYears[k] = yearCount * 1;
+                yearCount++;
+                k++;
+            }
+        }
+    }
+
+    uniqueYears.sort();
+    let reallyUinque = uniqueYears.filter(onlyUnique);
+    reallyUinque.forEach(element => {
+        $('#year-filter').append($('<option>', { value: element, text: element }));
+    });
+
+    if (modelSel.selectedOptions[0].value != undefined) {
+        let supp = modelSel.selectedOptions[0].value;
+        let kv = "modelSelection=" + supp;
+        document.cookie = kv;
+
+    }
+    document.cookie = "yearSelection=";
+};
+yearSel.onchange = function () {
+    if (yearSel.selectedOptions[0].value != undefined) {
+        let supp = yearSel.selectedOptions[0].value;
+        let kv = "yearSelection=" + supp;
+        document.cookie = kv;
+    }
+};
