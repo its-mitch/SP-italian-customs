@@ -179,7 +179,7 @@ var globalCode;
     const crumbSubName = document.querySelector('[crumbName="sottocategoria"]');
     const crumbSubLink = document.querySelector('[ccrumbLink="sottocategoria"]');
 
-    crumbCatName.textContent = prodcut.category;
+    crumbCatName.textContent = product.category;
     crumbSubName.textContent = product.subcategory;
 
     var link1=product.category.replace(" ","-");
