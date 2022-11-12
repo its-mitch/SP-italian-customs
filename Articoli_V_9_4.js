@@ -185,8 +185,8 @@ var globalCode;
     var link1=product.category.replace(" ","-");
     var link2=product.subcategory.replace(" ","-");
 
-    crumbCatLink.setAttribute('href','https://sp-customs-2.webflow.io/sottocategorie/'+link1);
-    crumbSubLink.setAttribute('href','https://sp-customs-2.webflow.io/sottocategorie/'+link2);
+    crumbCatLink.setAttribute('href','https://sp-customs-2.webflow.io/sottocategorie/'+link1.toLowerCase());
+    crumbSubLink.setAttribute('href','https://sp-customs-2.webflow.io/categorie/'+link2.toLowerCase());
     // Populate inner elements
 
     var defaultImage =
