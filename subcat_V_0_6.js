@@ -14,21 +14,23 @@
             const products = await fetchProducts();
             //const storProd=window.localStorage.getItem("storedProducts");
 
+            var ref = window.location.href;
+            var sottocatUrl = "";
+
+
             if (ref.includes("sottocategorie")) {
                 var x = ref.split("/");
                 sottocatUrl = x[x.length - 1].replace("-", " ");
             }
 
-            var filteredItems=products.filter(product=>{
-                return product.subcat.toLowerCase()==sottocatUrl;
+            var filteredItems = products.filter(product => {
+                return product.subcat.toLowerCase() == sottocatUrl;
             })
 
             const newItems = filteredItems.map((product) => createItem(product, itemTemplateElement));
 
-            var ref = window.location.href;
-            var sottocatUrl = "";
-    
-            
+
+
 
             await listInstance.addItems(newItems);
             //window.fsAttributes.cmsfilter.init();
