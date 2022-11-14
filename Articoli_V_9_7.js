@@ -151,14 +151,7 @@ var globalCode;
    * @returns A new Collection Item element.
    */
   const createItem = (product, templateElement) => {
-    var ref=document.referrer;
-    var sottocatUrl="";
-
-    if (ref.includes("sottocategorie")){
-      var x=ref.split("/");
-      sottocatUrl=x[x.length-1].replace("-"," ");
-    }
-
+   
     // Clone the template element
     const newItem = templateElement.cloneNode(true);
 
