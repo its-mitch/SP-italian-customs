@@ -24,7 +24,7 @@
             }
 
             var filteredItems = products.filter(product => {
-                return product.subcat.toLowerCase() == sottocatUrl;
+                return product.subcategory.toLowerCase() == sottocatUrl;
             })
 
             const newItems = filteredItems.map((product) => createItem(product, itemTemplateElement));
