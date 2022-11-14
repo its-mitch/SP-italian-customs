@@ -20,7 +20,7 @@
 
             if (ref.includes("sottocategorie")) {
                 var x = ref.split("/");
-                sottocatUrl = x[x.length - 1].replace("-", " ");
+                sottocatUrl = x[x.length - 1].replaceAll ("-", " ");
             }
 
             var filteredItems = products.filter(product => {

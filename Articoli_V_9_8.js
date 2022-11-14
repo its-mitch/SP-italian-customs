@@ -183,8 +183,8 @@ var globalCode;
     crumbCatName.textContent = product.category;
     crumbSubName.textContent = product.subcategory;
 
-    var link1=product.category.replace(" ","-");
-    var link2=product.subcategory.replace(" ","-");
+    var link1=product.category.replaceAll(" ","-");
+    var link2=product.subcategory.replaceAll(" ","-");
 
     crumbCatLink.setAttribute('href','https://sp-customs-2.webflow.io/sottocategorie/'+link1.toLowerCase());
     crumbSubLink.setAttribute('href','https://sp-customs-2.webflow.io/categorie/'+link2.toLowerCase());
