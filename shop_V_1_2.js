@@ -66,7 +66,7 @@
      */
     const createItem = (product, templateElement) => {
 
-        var ref=window.location;
+        var ref=window.location.href;
         var sottocatUrl="";
     
         if (ref.includes("sottocategorie")){
