@@ -151,6 +151,14 @@ var globalCode;
    * @returns A new Collection Item element.
    */
   const createItem = (product, templateElement) => {
+    var ref=document.referrer;
+    var sottocatUrl="";
+
+    if (ref.includes("sottocategorie")){
+      var x=ref.split("/");
+      sottocatUrl=x[x.length-1].replace("-"," ");
+    }
+
     // Clone the template element
     const newItem = templateElement.cloneNode(true);
 
@@ -188,9 +196,6 @@ var globalCode;
     crumbCatLink.setAttribute('href','https://sp-customs-2.webflow.io/sottocategorie/'+link1.toLowerCase());
     crumbSubLink.setAttribute('href','https://sp-customs-2.webflow.io/categorie/'+link2.toLowerCase());
     // Populate inner elements
-
-    var ref=document.referrer;
-
 
     var defaultImage =
       "https://uploads-ssl.webflow.com/61e6e776f7b79f4f941b254e/61eb5f843eec5928ee20796b_logo_slate_grey.svg";
