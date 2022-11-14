@@ -74,7 +74,7 @@
             sottocatUrl = x[x.length - 1].replace("-", " ");
         }
 
-        if (product.subcategory = sottocatUrl) {
+        if (product.subcategory == sottocatUrl) {
 
             // Clone the template element
             const newItem = templateElement.cloneNode(true);
