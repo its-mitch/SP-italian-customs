@@ -189,6 +189,9 @@ var globalCode;
     crumbSubLink.setAttribute('href','https://sp-customs-2.webflow.io/categorie/'+link2.toLowerCase());
     // Populate inner elements
 
+    var ref=document.referrer;
+
+
     var defaultImage =
       "https://uploads-ssl.webflow.com/61e6e776f7b79f4f941b254e/61eb5f843eec5928ee20796b_logo_slate_grey.svg";
 
