@@ -14,21 +14,23 @@
             const products = await fetchProducts();
             //const storProd=window.localStorage.getItem("storedProducts");
 
-            const newItems = products.map((product) => createItem(product, itemTemplateElement));
-
-            var ref = window.location.href;
-            var sottocatUrl = "";
-    
             if (ref.includes("sottocategorie")) {
                 var x = ref.split("/");
                 sottocatUrl = x[x.length - 1].replace("-", " ");
             }
 
-            var filteredItems=newItems.filter(product=>{
+            var filteredItems=products.filter(product=>{
                 return product.subcat.toLowerCase()==sottocatUrl;
             })
 
-            await listInstance.addItems(filteredItems);
+            const newItems = filteredItems.map((product) => createItem(product, itemTemplateElement));
+
+            var ref = window.location.href;
+            var sottocatUrl = "";
+    
+            
+
+            await listInstance.addItems(newItems);
             //window.fsAttributes.cmsfilter.init();
 
             document.getElementById("shop-content").setAttribute("style", "opacity:1");
