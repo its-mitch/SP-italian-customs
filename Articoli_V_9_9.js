@@ -73,6 +73,8 @@ var globalCode;
         }
       }
       const itemCode = document.getElementById("addToCart");
+
+      documents.getElementByClassName("breadcrumbs").setAttribute("opacity", 1);
       const fCode = globalCode;
 
       document.getElementById("fc-sku").value = globalCode;
@@ -188,6 +190,8 @@ var globalCode;
 
     crumbCatLink.setAttribute('href','https://sp-customs-2.webflow.io/categorie/'+link1.toLowerCase());
     crumbSubLink.setAttribute('href','https://sp-customs-2.webflow.io/sottocategorie/'+link2.toLowerCase());
+
+
     // Populate inner elements
 
     var defaultImage =
