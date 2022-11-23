@@ -29,9 +29,6 @@
 
             const newItems = filteredItems.map((product) => createItem(product, itemTemplateElement));
 
-
-
-
             await listInstance.addItems(newItems);
             //window.fsAttributes.cmsfilter.init();
 
