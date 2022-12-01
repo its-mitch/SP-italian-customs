@@ -153,7 +153,7 @@ var globalCode;
    * @returns A new Collection Item element.
    */
   const createItem = (product, templateElement) => {
-
+   
     // Clone the template element
     const newItem = templateElement.cloneNode(true);
 
@@ -185,11 +185,11 @@ var globalCode;
     crumbCatName.textContent = product.category;
     crumbSubName.textContent = product.subcategory;
 
-    var link1 = product.category.replaceAll(" ", "-");
-    var link2 = product.subcategory.replaceAll(" ", "-");
+    var link1=product.category.replaceAll(" ","-");
+    var link2=product.subcategory.replaceAll(" ","-");
 
-    crumbCatLink.setAttribute('href', 'https://sp-customs-2.webflow.io/categorie/' + link1.toLowerCase());
-    crumbSubLink.setAttribute('href', 'https://sp-customs-2.webflow.io/sottocategorie/' + link2.toLowerCase());
+    crumbCatLink.setAttribute('href','https://sp-customs-2.webflow.io/categorie/'+link1.toLowerCase());
+    crumbSubLink.setAttribute('href','https://sp-customs-2.webflow.io/sottocategorie/'+link2.toLowerCase());
 
 
     // Populate inner elements
@@ -208,9 +208,7 @@ var globalCode;
       var imgArr = product.altImg;
       let ii = 0;
       while (ii < imgArr.length) {
-        if(UrlExists(imgArr[ii])){
-          images[ii] = imgArr[ii];
-        }
+        images[ii] = imgArr[ii];
         ii++;
       }
     } else {
@@ -331,7 +329,7 @@ var globalCode;
     if (producer) producer.textContent = product.brand;
     if (product.desc != null) {
       if (product.desFull != null) {
-        let desFull = product.desc + "\n" + product.spec + "\n" + product.desFull;
+        let desFull = product.desc + "\n" +product.spec+ "\n" + product.desFull;
         if (description) description.textContent = desFull;
       } else {
         if (description) description.textContent = product.desc;
@@ -374,16 +372,7 @@ var globalCode;
 
     return newItem;
   };
-
-  function UrlExists(url) {
-    var http = new XMLHttpRequest();
-    http.open('HEAD', url, false);
-    http.send();
-    if (http.status != 404)
-      return true;
-    else
-      return false;
-  }
+  
 
   function onlyUnique(value, index, self) {
     return self.indexOf(value) === index;
