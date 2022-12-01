@@ -229,7 +229,7 @@ var globalCode;
           altImages[i].src = images[i];
         }
         if(altImages[i].naturalWidth=150){
-          parent.removeChild(singleImagesContainer[i]);
+          altImages[i].remove();
         }
         i++;
       }
