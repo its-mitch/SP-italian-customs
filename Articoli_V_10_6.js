@@ -74,7 +74,7 @@ var globalCode;
       }
       const itemCode = document.getElementById("addToCart");
 
-      document.getElementByClassName("breadcrumbs").setAttribute("opacity", 1);
+      document.getElementsByClassName("breadcrumbs").setAttribute("opacity", 1);
       const fCode = globalCode;
 
       document.getElementById("fc-sku").value = globalCode;
