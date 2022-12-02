@@ -328,6 +328,7 @@ var globalCode;
     if (product.model != null) if (model) model.textContent = product.model.split(",").filter(onlyUnique);
     if (producer) producer.textContent = product.brand;
     if (product.desc != null) {
+      description.style.whiteSpace = "pre";
       if (product.desFull != null) {
         let desFull = product.desc + "\r\n" + "\r\n" + product.desFull;
         if (description) description.textContent = product.desc;
