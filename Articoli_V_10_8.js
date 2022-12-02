@@ -228,9 +228,6 @@ var globalCode;
         } else {
           altImages[i].src = images[i];
         }
-        if(altImages[i].naturalWidth==150){
-          altImages[i].remove();
-        }
         i++;
       }
     } else {
@@ -332,7 +329,7 @@ var globalCode;
     if (producer) producer.textContent = product.brand;
     if (product.desc != null) {
       if (product.desFull != null) {
-        let desFull = product.desc + "\n" +product.spec+ "\n" + product.desFull;
+        let desFull = product.desc + "\r\n" + "\r\n" + product.desFull;
         if (description) description.textContent = desFull;
       } else {
         if (description) description.textContent = product.desc;
@@ -343,6 +340,9 @@ var globalCode;
       } else {
         description.textContent = "";
       }
+    }
+    if(product.spec!=null){
+      description.textContent+="\r\nSPECIFICHE VARIANTI\r\n"+product.spec.toString();
     }
     if (product.variant != null) {
       if (Array.isArray(product.variant)) {
