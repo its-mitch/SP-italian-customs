@@ -228,7 +228,7 @@ var globalCode;
         } else {
           altImages[i].src = images[i];
         }
-        if(altImages[i].naturalWidth=150){
+        if(altImages[i].naturalWidth==150){
           altImages[i].remove();
         }
         i++;
