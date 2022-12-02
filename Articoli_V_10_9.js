@@ -153,7 +153,7 @@ var globalCode;
    * @returns A new Collection Item element.
    */
   const createItem = (product, templateElement) => {
-   
+
     // Clone the template element
     const newItem = templateElement.cloneNode(true);
 
@@ -185,11 +185,11 @@ var globalCode;
     crumbCatName.textContent = product.category;
     crumbSubName.textContent = product.subcategory;
 
-    var link1=product.category.replaceAll(" ","-");
-    var link2=product.subcategory.replaceAll(" ","-");
+    var link1 = product.category.replaceAll(" ", "-");
+    var link2 = product.subcategory.replaceAll(" ", "-");
 
-    crumbCatLink.setAttribute('href','https://sp-customs-2.webflow.io/categorie/'+link1.toLowerCase());
-    crumbSubLink.setAttribute('href','https://sp-customs-2.webflow.io/sottocategorie/'+link2.toLowerCase());
+    crumbCatLink.setAttribute('href', 'https://sp-customs-2.webflow.io/categorie/' + link1.toLowerCase());
+    crumbSubLink.setAttribute('href', 'https://sp-customs-2.webflow.io/sottocategorie/' + link2.toLowerCase());
 
 
     // Populate inner elements
@@ -341,8 +341,13 @@ var globalCode;
         description.textContent = "";
       }
     }
-    if(product.spec!=null){
-      description.textContent+="\r\nSPECIFICHE VARIANTI\r\n"+product.spec.toString();
+    if (product.spec != null) {
+      description.textContent += "\r\nSPECIFICHE VARIANTI\r\n";
+      if (Array.isArray(product.spec)) {
+        for (let n = o; n < product.length; n++) {
+          description.textContent += product.spec[n];
+        }
+      }
     }
     if (product.variant != null) {
       if (Array.isArray(product.variant)) {
@@ -375,7 +380,7 @@ var globalCode;
 
     return newItem;
   };
-  
+
 
   function onlyUnique(value, index, self) {
     return self.indexOf(value) === index;
