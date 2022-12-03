@@ -344,7 +344,7 @@ var globalCode;
       }
     }
     if (product.spec != null) {
-      description.textContent += "\r\NSPECIFICHE VARIANTI\r\n";
+      description.textContent += "\r\nSPECIFICHE VARIANTI\r\n";
       if (Array.isArray(product.spec)) {
         for (let n = 0; n < product.spec.length; n++) {
           description.textContent += "\r\n"+product.spec[n];
