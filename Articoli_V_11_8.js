@@ -332,7 +332,7 @@ var globalCode;
       if (product.desFull != null) {
         // let desFull = product.desc + "\r\n" + "\r\n" + product.desFull;
         if (description) description.textContent = product.desc;
-        description.textContent+=product.desFull;
+        description.textContent+="\r\n"+product.desFull;
       } else {
         if (description) description.textContent = product.desc;
       }
