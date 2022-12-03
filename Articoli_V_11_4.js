@@ -330,27 +330,24 @@ var globalCode;
     if (product.desc != null) {
       description.style.whiteSpace = "pre";
       if (product.desFull != null) {
-        let desFull = product.desc + "\r\n" + "\r\n" + product.desFull;
+        // let desFull = product.desc + "\r\n" + "\r\n" + product.desFull;
         if (description) description.textContent = product.desc;
-        description.innerHtml+="<br/>";
         description.textContent+=product.desFull;
-        description.innerHtml+="<br/>";
       } else {
         if (description) description.textContent = product.desc;
       }
     } else {
       if (product.desFull != null) {
-        if (description) description.textContent = desFull;
+        if (description) description.textContent = product.desc;
       } else {
         description.textContent = "";
       }
     }
     if (product.spec != null) {
-      description.textContent += "\r\nSPECIFICHE VARIANTI\r\n";
+      description.textContent += "\r\NSPECIFICHE VARIANTI\r\n";
       if (Array.isArray(product.spec)) {
         for (let n = 0; n < product.spec.length; n++) {
-          description.innerHtml+="<br/>";
-          description.textContent += product.spec[n];
+          description.textContent += "\r\n"+product.spec[n];
         }
       }
     }
