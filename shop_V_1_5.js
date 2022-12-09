@@ -99,10 +99,10 @@
         if(product.spec!=null){
             if (Array.isArray(product.spec)){
                 for(let g=0;g<product.spec.length;g++){
-                    if(spec) spec.textContent+=product.spec[g];
+                    if(spec) spec.textContent+="\r\n"+product.spec[g];
                 }
             }else{
-                if(spec) spec.textContent+=product.spec;
+                if(spec) spec.textContent+="\r\n"+product.spec;
             }
         }
 
