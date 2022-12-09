@@ -80,6 +80,7 @@
         const button = newItem.querySelector('[data-element="link"]');
         const price = newItem.querySelector('[data-element="price"]');
         const year = newItem.querySelector('[data-element="year"]');
+        const spec = newItem.querySelector('[data-element="spec"]');
 
 
         // Populate inner elements
@@ -94,6 +95,16 @@
         if (name) name.textContent = product.name;
         if (category) category.textContent = product.category;
         if (subcategory) subcategory.textContent = product.subcategory;
+
+        if(product.spec!=null){
+            if (Array.isArray(product.spec)){
+                for(let g=0;g<product.spec.length;g++){
+                    if(spec) spec.textContent+=product.spec[g];
+                }
+            }else{
+                if(spec) spec.textContent+=product.spec;
+            }
+        }
 
         //important
         if (product.Comp != null) {
