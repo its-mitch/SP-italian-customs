@@ -81,6 +81,7 @@
         const price = newItem.querySelector('[data-element="price"]');
         const year = newItem.querySelector('[data-element="year"]');
         const spec = newItem.querySelector('[data-element="spec"]');
+        const code = newItem.querySelector('[data-element="code"]');
 
 
         // Populate inner elements
@@ -187,7 +188,7 @@
         }
         if (producer) producer.textContent = product.Brand;
         if (button) button.setAttribute('href', 'https://sp-customs-2.webflow.io/articoli?id=' + product._id);
-        //if (code) code.textContent = product.code;
+        if (code) code.textContent = product.code;
         //if (year) year.textContent = product.year;
 
         let priceArr = product.price.toString();
