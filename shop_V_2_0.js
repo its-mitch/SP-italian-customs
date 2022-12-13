@@ -134,7 +134,7 @@
                 }
                 let yearIndex = 0;
                 while (yearStart < yearEnd+1) {
-                    yearSequence[yearIndex] = yearStart.toString();
+                    yearSequence[yearIndex] = yearStart;
                     yearIndex++;
                     yearStart++;
                 }
