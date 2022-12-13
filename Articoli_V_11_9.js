@@ -326,7 +326,7 @@ var globalCode;
 
     if (product.make != null) if (make) make.textContent = product.make.split(",").filter(onlyUnique);
     if (product.model != null) if (model) model.textContent = product.model.split(",").filter(onlyUnique);
-    if (producer) producer.textContent = product.brand;
+    if (producer) producer.textContent = product.Brand;
     if (product.desc != null) {
       //description.style.whiteSpace = "pre";
       if (product.desFull != null) {

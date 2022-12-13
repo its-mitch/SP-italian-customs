@@ -133,8 +133,8 @@
                     yearEnd = 2023;
                 }
                 let yearIndex = 0;
-                while (yearStart < yearEnd) {
-                    yearSequence[yearIndex] = yearStart;
+                while (yearStart < yearEnd+1) {
+                    yearSequence[yearIndex] = yearStart.toString();
                     yearIndex++;
                     yearStart++;
                 }
