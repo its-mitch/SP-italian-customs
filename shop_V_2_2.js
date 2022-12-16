@@ -10,10 +10,10 @@
             const [firstItem] = listInstance.items;
             listInstance.clearItems();
             const itemTemplateElement = firstItem.element;
-            
+
             const products = await fetchProducts();
             //const storProd=window.localStorage.getItem("storedProducts");
-            
+
             const newItems = products.map((product) => createItem(product, itemTemplateElement));
             await listInstance.addItems(newItems);
             //window.fsAttributes.cmsfilter.init();
@@ -41,8 +41,8 @@
      * Fetches fake products from Fake Store API.
      * @returns An array of {@link Product}.
      */
-    
-     const fetchProducts = async () => {
+
+    const fetchProducts = async () => {
         try {
             const response = await fetch('https://data.mongodb-api.com/app/sp-gaodj/endpoint/sp_shop_api');
             const data = await response.json();
@@ -97,13 +97,13 @@
         if (category) category.textContent = product.category;
         if (subcategory) subcategory.textContent = product.subcategory;
 
-        if(product.spec!=null){
-            if (Array.isArray(product.spec)){
-                for(let g=0;g<product.spec.length;g++){
-                    if(spec) spec.textContent+="\r\n"+product.spec[g];
+        if (product.spec != null) {
+            if (Array.isArray(product.spec)) {
+                for (let g = 0; g < product.spec.length; g++) {
+                    if (spec) spec.textContent += "\r\n" + product.spec[g];
                 }
-            }else{
-                if(spec) spec.textContent+="\r\n"+product.spec;
+            } else {
+                if (spec) spec.textContent += "\r\n" + product.spec;
             }
         }
 
@@ -133,11 +133,12 @@
                     yearEnd = 2023;
                 }
                 let yearIndex = 0;
-                while (yearStart < yearEnd+1) {
+                while (yearStart < yearEnd) {
                     yearSequence[yearIndex] = yearStart;
                     yearIndex++;
                     yearStart++;
                 }
+                yearSequence.push(yearEnd);
                 makeSequence[i] = compParts[0];
                 let j = 1;
                 while (j < compParts.length - 1) {

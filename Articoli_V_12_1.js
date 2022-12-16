@@ -276,11 +276,12 @@ var globalCode;
           compText.textContent = compText.textContent + " " + yearStart + "-" + yearEnd + "\n";
         }
         let yearIndex = 0;
-        while (yearStart <= yearEnd) {
+        while (yearStart < yearEnd) {
           yearSequence[yearIndex] = yearStart;
           yearIndex++;
           yearStart++;
         }
+        yearSequence.push(yearEnd);
         makeSequence[i] = compParts[0];
         let j = 1;
         while (j < compParts.length - 1) {
@@ -332,7 +333,7 @@ var globalCode;
       if (product.desFull != null) {
         // let desFull = product.desc + "\r\n" + "\r\n" + product.desFull;
         if (description) description.textContent = product.desc;
-        description.textContent+="\r\n"+product.desFull;
+        description.textContent += "\r\n" + product.desFull;
       } else {
         if (description) description.textContent = product.desc;
       }
@@ -347,13 +348,13 @@ var globalCode;
       description.textContent += "\r\n\r\nSPECIFICHE VARIANTI\r\n";
       if (Array.isArray(product.spec)) {
         for (let n = 0; n < product.spec.length; n++) {
-          description.textContent += "\r\n"+product.spec[n];
+          description.textContent += "\r\n" + product.spec[n];
         }
       }
     }
     if (product.variant != null) {
       if (Array.isArray(product.variant)) {
-        var variantArr = product.variant;
+        var variantArr = product.variant.filter(onlyUnique);
         variantArr = variantArr;
         if (variant) variant.textContent = variantArr;
         globVariants = product.variant;

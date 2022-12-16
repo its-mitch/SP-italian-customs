@@ -20,7 +20,7 @@
 
             if (ref.includes("sottocategorie")) {
                 var x = ref.split("/");
-                sottocatUrl = x[x.length - 1].replaceAll ("-", " ");
+                sottocatUrl = x[x.length - 1].replaceAll("-", " ");
             }
 
             var filteredItems = products.filter(product => {
@@ -143,6 +143,7 @@
                     yearIndex++;
                     yearStart++;
                 }
+                yearSequence.push(yearEnd);
                 makeSequence[i] = compParts[0];
                 let j = 1;
                 while (j < compParts.length - 1) {
