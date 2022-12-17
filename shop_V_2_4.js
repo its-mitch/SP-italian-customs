@@ -151,20 +151,24 @@
                 }
                 i++;
             }
-            make.textContent = makeSequence;
-            if (make) make.textContent = makeSequence;
-            model.textContent = modelSequence;
-            if (model) model.textContent = modelSequence;
-            year.textContent = yearSequence;
-            if (year) year.textContent = yearSequence;
+            //make.textContent = makeSequence;
+            let makeString = makeSequence.toString().replace(new RegExp(',', 'g'), ' ');
+            if (make) make.textContent = makeString;
+            //model.textContent = modelSequence;
+            let modelString = modelSequence.toString().replace(new RegExp(',', 'g'), ' ');
+            if (model) model.textContent = modelString;
+            //year.textContent = yearSequence;
+            let yearString = yearSequence.toString().replace(new RegExp(',', 'g'), ' ');
+            if (year) year.textContent = yearString;
         } else {
             if (product.make != null) {
-                if (make) make.textContent = product.make.toString().split(",").filter(onlyUnique);
+
+                if (make) make.textContent = product.make.toString().split(",").filter(onlyUnique).replace(new RegExp(',', 'g'), ' ');
             } else {
                 if (make) make.textContent = "";
             }
             if (product.model != null) {
-                if (model) model.textContent = product.model.toString().split(",").filter(onlyUnique);
+                if (model) model.textContent = product.model.toString().split(",").filter(onlyUnique).replace(new RegExp(',', 'g'), ' ');
             } else {
                 if (model) model.textContent = "";
             }
@@ -175,7 +179,7 @@
                         yearArray = yearArray.filter(onlyUnique);
                         yearArray = yearArray.sort();
                         if (year) year.textContent = yearArray;
-                        years = product.year.filter(onlyUnique);
+                        years = product.year.filter(onlyUnique).replace(new RegExp(',', 'g'), ' ');
                     } else {
                         if (year) year.textContent = product.year;
                     }
