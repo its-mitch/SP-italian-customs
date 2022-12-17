@@ -220,6 +220,7 @@
 
 })();
 
+/*
 
 let compMatrix = [];
 compMatrix[0] = [];
@@ -335,3 +336,4 @@ yearSel.onchange = function () {
         document.cookie = kv;
     }
 };
+*/
