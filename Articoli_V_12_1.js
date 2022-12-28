@@ -4,6 +4,7 @@ var models;
 var years;
 var globVariants;
 var globalCode;
+var compMatrix;
 (() => {
   window.fsAttributes = window.fsAttributes || [];
   window.fsAttributes.push([
