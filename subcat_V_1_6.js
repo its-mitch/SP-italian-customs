@@ -156,11 +156,8 @@
                 }
                 i++;
             }
-            make.textContent = makeSequence;
             if (make) make.textContent = makeSequence;
-            model.textContent = modelSequence;
             if (model) model.textContent = modelSequence;
-            year.textContent = yearSequence;
             if (year) year.textContent = yearSequence;
         } else {
             if (product.make != null) {
