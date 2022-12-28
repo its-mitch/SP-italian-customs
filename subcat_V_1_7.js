@@ -185,7 +185,7 @@
                     if (year) year.textContent = product.year;
                 }
             } else {
-                year.textContent[0] = "Universale";
+                if (year) year.textContent[0] = "Universale";
                 years = "Universale";
             }
         }
