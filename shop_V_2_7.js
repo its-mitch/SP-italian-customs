@@ -4,7 +4,7 @@
     window.fsAttributes.push([
         'cmsload',
         async (listInstances) => {
-            const listInstance = listInstances[0];
+            let listInstance = listInstances[0];
             if(listInstances[0].validItems==25){
                 listInstance = listInstances[0];
             }else{
