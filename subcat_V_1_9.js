@@ -5,8 +5,13 @@
         'cmsload',
         async (listInstances) => {
 
+            let listInstance = listInstances[0];
+            if(listInstances[0].validItems==25){
+                listInstance = listInstances[0];
+            }else{
+                listInstance = listInstances[1];
+            }
 
-            const [listInstance] = listInstances;
             const [firstItem] = listInstance.items;
             listInstance.clearItems();
             const itemTemplateElement = firstItem.element;
