@@ -28,7 +28,9 @@ var compMatrix;
       }
 
       await listInstance.addItems(newItems);
+      
       document.getElementById("colWrap").setAttribute("style", "opacity:1");
+      /*
       if (makes != null) {
         if (makes[0] == "Universale") {
           document.getElementById("make-wrap").setAttribute("style", "display:none");
@@ -61,6 +63,7 @@ var compMatrix;
 
         }
       }
+      */
       if (globVariants != null) {
         if (Array.isArray(globVariants)) {
           Array.from(globVariants).forEach(element => {
@@ -408,16 +411,10 @@ var compMatrix;
 if (typeof makes == undefined || typeof models == undefined || typeof years == undefined || typeof globVariants == undefined || makes == null || moels == null || years == null || globVariants == null) {
   var options = options || {};
   options["formArticolo"] = {};
-  options["formArticolo"]["Marca"] = "";
-  options["formArticolo"]["Modello"] = "";
-  options["formArticolo"]["Anno"] = "";
   options["formArticolo"]["Variant"] = "";
 } else {
   var options = options || {};
   options["formArticolo"] = {};
-  options["formArticolo"]["Marca"] = makes;
-  options["formArticolo"]["Modello"] = models;
-  options["formArticolo"]["Anno"] = years;
   options["formArticolo"]["Variant"] = globVariants;
 }
 
