@@ -195,7 +195,7 @@
             }
         }
         if (producer) producer.textContent = product.Brand;
-        if (button) button.setAttribute('href', 'https://sp-customs-2.webflow.io/articoli?id=' + product._id);
+        if (button) button.setAttribute('href', 'https://sp-italian-customs.webflow.io/articoli?id=' + product._id);
         if (code) code.textContent = product.code;
         //if (year) year.textContent = product.year;
 
