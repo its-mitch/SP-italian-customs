@@ -192,8 +192,8 @@ var compMatrix;
     var link1 = product.category.replaceAll(" ", "-");
     var link2 = product.subcategory.replaceAll(" ", "-");
 
-    crumbCatLink.setAttribute('href', 'https://sp-customs-2.webflow.io/categorie/' + link1.toLowerCase());
-    crumbSubLink.setAttribute('href', 'https://sp-customs-2.webflow.io/sottocategorie/' + link2.toLowerCase());
+    crumbCatLink.setAttribute('href', 'https://sp-italian-customs.webflow.io/categorie/' + link1.toLowerCase());
+    crumbSubLink.setAttribute('href', 'https://sp-italian-customs.webflow.io/sottocategorie/' + link2.toLowerCase());
 
 
     // Populate inner elements
