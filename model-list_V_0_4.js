@@ -40,7 +40,7 @@ Array.from(brandArray).forEach(element => {
 
 //populate sbucat
 for(var n=0;n<catArray.length;n++){
-  $('#subcat-filter').append($('<option>', {value:subcatArray[n], text:catArray[n]+" "+subcatArray[n]}));
+  $('#subcat-filter').append($('<option>', {value:subcatArray[n], text:catArray[n]+" - "+subcatArray[n]}));
 }
 
 //populate makes
