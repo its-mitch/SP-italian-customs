@@ -360,10 +360,10 @@ var compMatrix;
       if (Array.isArray(product.variant)) {
         var variantArr = product.variant.filter(onlyUnique);
         variantArr = variantArr;
-        if (variant) variant.textContent = variantArr;
+        //if (variant) variant.textContent = variantArr;
         globVariants = product.variant;
       } else {
-        variant.textContent = product.variant;
+        //variant.textContent = product.variant;
         globVariants = product.variant;
       }
 
