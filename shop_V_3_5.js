@@ -152,13 +152,13 @@
             }
             let makeString= makeSequence.toString();
             let modelString= modelSequence.toString();
-            let yearString= yearlSequence.toString();
+            let yearString= yearSequence.toString();
             
             if (make) make.textContent = makeString.replace(","," ");
             if (model) model.textContent = modelString.replace(","," ");
             if (year) year.textContent = yearString.replace(","," ");
         } else {
-            if (make) make.textContent = "Universale";
+            if (make) make.textContents = "Universale";
             if (model) model.textContent = "Universale";
             if (year) year.textContent = "Universale";
         }
