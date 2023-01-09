@@ -4,7 +4,7 @@
     window.fsAttributes.push([
         'cmsload',
         async (listInstances) => {
-
+            
             const [listInstance] = listInstances;
             const [firstItem] = listInstance.items;
             listInstance.clearItems();
@@ -13,21 +13,7 @@
             const products = await fetchProducts();
             //const storProd=window.localStorage.getItem("storedProducts");
 
-            var ref = window.location.href;
-            var sottocatUrl = "";
-
-
-            if (ref.includes("sottocategorie")) {
-                var x = ref.split("/");
-                sottocatUrl = x[x.length - 1].replaceAll("-", " ");
-            }
-
-            var filteredItems = products.filter(product => {
-                return product.subcategory.toString().toLowerCase() == sottocatUrl;
-            })
-
-            const newItems = filteredItems.map((product) => createItem(product, itemTemplateElement));
-
+            const newItems = products.map((product) => createItem(product, itemTemplateElement));
             await listInstance.addItems(newItems);
             //window.fsAttributes.cmsfilter.init();
 
@@ -79,8 +65,6 @@
      */
     const createItem = (product, templateElement) => {
 
-
-
         // Clone the template element
         const newItem = templateElement.cloneNode(true);
 
@@ -95,6 +79,7 @@
         const button = newItem.querySelector('[data-element="link"]');
         const price = newItem.querySelector('[data-element="price"]');
         const year = newItem.querySelector('[data-element="year"]');
+        const spec = newItem.querySelector('[data-element="spec"]');
         const code = newItem.querySelector('[data-element="code"]');
 
 
@@ -110,6 +95,16 @@
         if (name) name.textContent = product.name;
         if (category) category.textContent = product.category;
         if (subcategory) subcategory.textContent = product.subcategory;
+
+        if (product.spec != null) {
+            if (Array.isArray(product.spec)) {
+                for (let g = 0; g < product.spec.length; g++) {
+                    if (spec) spec.textContent += "\r\n" + product.spec[g];
+                }
+            } else {
+                if (spec) spec.textContent += "\r\n" + product.spec;
+            }
+        }
 
         //important
         if (product.Comp != null) {
@@ -159,11 +154,11 @@
             let modelString= modelSequence.toString();
             let yearString= yearSequence.toString();
             
-            if (make) make.textContent = makeString.replace(","," ");
-            if (model) model.textContent = modelString.replace(","," ");
-            if (year) year.textContent = yearString.replace(","," ");
+            if (make) make.textContent = makeString.replaceAll(","," ");
+            if (model) model.textContent = modelString.replaceAll(","," ");
+            if (year) year.textContent = yearString.replaceAll(","," ");
         } else {
-            if (make) make.textContent = "Universale";
+            if (make) make.textContents = "Universale";
             if (model) model.textContent = "Universale";
             if (year) year.textContent = "Universale";
         }
@@ -176,6 +171,7 @@
         priceArr = priceArr.split(",").filter(onlyUnique);
         priceArr = priceArr.sort();
         if (price) price.textContent = "€" + addZeroes(priceArr[0]);
+
 
         return newItem;
     };
@@ -200,6 +196,7 @@
 })();
 
 /*
+
 let compMatrix = [];
 compMatrix[0] = [];
 
