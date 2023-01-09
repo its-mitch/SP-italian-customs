@@ -162,34 +162,9 @@
             year.textContent = yearSequence;
             if (year) year.textContent = yearSequence;
         } else {
-            if (product.make != null) {
-                if (make) make.textContent = product.make.toString().split(",").filter(onlyUnique);
-            } else {
-                if (make) make.textContent = "";
-            }
-            if (product.model != null) {
-                if (model) model.textContent = product.model.toString().split(",").filter(onlyUnique);
-            } else {
-                if (model) model.textContent = "";
-            }
-            if (product.year != null) {
-                if (product.year != "Universale") {
-                    if (Array.isArray(product.year)) {
-                        var yearArray = product.year;
-                        yearArray = yearArray.filter(onlyUnique);
-                        yearArray = yearArray.sort();
-                        if (year) year.textContent = yearArray;
-                        years = product.year.filter(onlyUnique);
-                    } else {
-                        if (year) year.textContent = product.year;
-                    }
-                } else {
-                    if (year) year.textContent = product.year;
-                }
-            } else {
-                year.textContent[0] = "Universale";
-                years = "Universale";
-            }
+            if (make) make.textContent = "Universale";
+            if (model) model.textContent = "Universale";
+            if (year) year.textContent = "Universale";
         }
         if (producer) producer.textContent = product.Brand;
         if (button) button.setAttribute('href', 'https://sp-italian-customs.webflow.io/articoli?id=' + product._id);
