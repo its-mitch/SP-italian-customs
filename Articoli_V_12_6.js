@@ -305,32 +305,8 @@ var compMatrix;
       year.textContent = yearSequence.filter(onlyUnique);
       years = yearSequence.filter(onlyUnique);
     } else {
-      if (product.make != null) {
-        if (make) make.textContent = product.make.toString().split(",").filter(onlyUnique);
-      } else {
-        if (make) make.textContent = "";
-      }
-      if (product.model != null) {
-        if (model) model.textContent = product.model.toString().split(",").filter(onlyUnique);
-      } else {
-        if (model) model.textContent = "";
-      }
-      if (product.year != null) {
-        var yearArray = product.year.split(",");
-        yearArray = yearArray.filter(onlyUnique);
-        yearArray = yearArray.sort();
-        if (year) year.textContent = yearArray;
-        if (product.year != null) years = product.year.split(",").filter(onlyUnique);
-      } else {
-        year.textContent[0] = "Universale";
-        years = "Universale";
-      }
-      if (product.make != null) makes = product.make.split(",").filter(onlyUnique);
-      if (product.model != null) models = product.model.split(",").filter(onlyUnique);
+      
     }
-
-    if (product.make != null) if (make) make.textContent = product.make.split(",").filter(onlyUnique);
-    if (product.model != null) if (model) model.textContent = product.model.split(",").filter(onlyUnique);
     if (producer) producer.textContent = product.Brand;
     if (product.desc != null) {
       //description.style.whiteSpace = "pre";
