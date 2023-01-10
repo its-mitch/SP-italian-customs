@@ -1,5 +1,4 @@
 (() => {
-    // src/cms/populate-external-data/index.ts
     window.fsAttributes = window.fsAttributes || [];
     window.fsAttributes.push([
         'cmsload',
@@ -11,25 +10,15 @@
             const itemTemplateElement = firstItem.element;
 
             const products = await fetchProducts();
-            //const storProd=window.localStorage.getItem("storedProducts");
 
             const newItems = products.map((product) => createItem(product, itemTemplateElement));
             await listInstance.addItems(newItems);
-            //window.fsAttributes.cmsfilter.init();
 
             document.getElementById("shop-content").setAttribute("style", "opacity:1");
-            //document.getElementById("filterHeader").setAttribute("style","opacity:1");
             document.getElementById("pagination").setAttribute("style", "opacity:1");
 
             delay(5000);
             document.getElementById("loading-wrapper").setAttribute("style", "display:none");
-
-            //setTimeout(function(){console.log('waiting to end animation');}, 2000);
-
-            //document.getElementById("loadingAnim").setAttribute("style","display:none");
-            //filtersInstance.storeFiltersData();
-
-            // ----------------------------------------------------------------
 
             let compMatrix = [];
             compMatrix[0] = [];
@@ -39,7 +28,6 @@
             let arrMod = modelString.split("<");
 
 
-            //console.table(arrMod);
             let k = 0;
             while (k < arrMod.length) {
                 let oneModel = arrMod[k].split(">");
@@ -56,13 +44,11 @@
             }
 
 
-            //populate brands
             brandArray.sort();
             Array.from(brandArray).forEach(element => {
                 $('#brand-filter').append($('<option>', { value: element, text: element }));
             })
 
-            //populate sbucat
             for (var n = 0; n < catArray.length; n++) {
                 $('#subcat-filter').append($('<option>', { value: subcatArray[n], text: catArray[n] + " - " + subcatArray[n] }));
             }
@@ -71,13 +57,11 @@
             let modelSel = document.getElementById("model-filter");
             let yearSel = document.getElementById("year-filter");
 
-            //populate makes
             makeArr.sort();
             Array.from(makeArr).forEach(element => {
                 $('#make-filter').append($('<option>', { value: element, text: element }));
             })
 
-            //populate models
             let uniqueModels = [];
             makeSel.onchange = function () {
                 uniqueModels = [];
@@ -108,7 +92,6 @@
                 resetFilters("years");
             }
 
-            //populate years
             let uniqueYears = [];
             modelSel.onchange = function () {
                 uniqueYears = [];
@@ -156,23 +139,10 @@
         },
     ]);
 
-    function delay(time) {
-        return new Promise(resolve => setTimeout(resolve, time));
-    }
-
-    /**
-     * Fetches fake products from Fake Store API.
-     * @returns An array of {@link Product}.
-     */
-
     const fetchProducts = async () => {
         try {
             const response = await fetch('https://data.mongodb-api.com/app/sp-gaodj/endpoint/sp_shop_api');
             const data = await response.json();
-
-            //var storedProd=JSON.stringify(data);
-
-            //window.localStorage.setItem("storedProducts", storedProd);
 
             return data;
         } catch (error) {
@@ -180,19 +150,11 @@
         }
     };
 
-    /**
-     * Creates an item from the template element.
-     * @param product The product data to create the item from.
-     * @param templateElement The template element.
-     *
-     * @returns A new Collection Item element.
-     */
     const createItem = (product, templateElement) => {
-
         // Clone the template element
         const newItem = templateElement.cloneNode(true);
 
-        // Query inner elements
+        // Select all the elements that need to be updated
         const image = newItem.querySelector('[data-element="image"]');
         const name = newItem.querySelector('[data-element="name"]');
         const category = newItem.querySelector('[data-element="category"]');
@@ -206,115 +168,74 @@
         const spec = newItem.querySelector('[data-element="spec"]');
         const code = newItem.querySelector('[data-element="code"]');
 
+        // Set the default image
+        const defaultImage = "https://uploads-ssl.webflow.com/61e6e776f7b79f4f941b254e/61eb5f843eec5928ee20796b_logo_slate_grey.svg";
+        // Set the image src to either the product image or the default image
+        image.src = product.img || defaultImage;
+        // Set the name text content to the product name
+        name.textContent = product.name;
+        // Set the category text content to the product category
+        category.textContent = product.category;
+        // Set the subcategory text content to the product subcategory
+        subcategory.textContent = product.subcategory;
+        // Set the spec text content to the product spec, or an empty string if it's not defined
+        spec.textContent = (Array.isArray(product.spec) ? product.spec.join("\r\n") : product.spec) || "";
 
-        // Populate inner elements
-        var defaultImage =
-            "https://uploads-ssl.webflow.com/61e6e776f7b79f4f941b254e/61eb5f843eec5928ee20796b_logo_slate_grey.svg";
-
-        if (product.img != null) {
-            if (image) image.src = product.img;
-        } else {
-            if (image) image.src = defaultImage;
-        }
-        if (name) name.textContent = product.name;
-        if (category) category.textContent = product.category;
-        if (subcategory) subcategory.textContent = product.subcategory;
-
-        if (product.spec != null) {
-            if (Array.isArray(product.spec)) {
-                for (let g = 0; g < product.spec.length; g++) {
-                    if (spec) spec.textContent += "\r\n" + product.spec[g];
-                }
-            } else {
-                if (spec) spec.textContent += "\r\n" + product.spec;
+        // Split the product Comp into an array if it's not already an array
+        const compArray = Array.isArray(product.Comp) ? product.Comp : product.Comp.split(" <> ");
+        // Initialize empty arrays for the year, make, and model sequences
+        const yearSequence = [];
+        const makeSequence = [];
+        const modelSequence = [];
+        // Iterate over the compArray
+        for (const comp of compArray) {
+            // Split the comp into parts
+            const compParts = comp.split(" ");
+            // Get the compYears from the last part
+            const compYears = compParts[compParts.length - 1];
+            // Split the compYears into start and end years, with a default end year of 2023
+            const [yearStart, yearEnd = 2023] = compYears.length > 4 ? [compYears.slice(0, 4), compYears.slice(4)] : [compYears];
+            // Add all the years from start to end (exclusive) to theyearSequence array
+            for (let year = yearStart; year < yearEnd; year++) {
+                yearSequence.push(year);
             }
+            // Add the end year to the yearSequence array
+            yearSequence.push(yearEnd);
+            // Add the make to the makeSequence array
+            makeSequence.push(compParts[0]);
+            // Add the model to the modelSequence array
+            modelSequence.push(compParts.slice(1, -1).join(" "));
         }
-
-        //important
-        if (product.Comp != null) {
-            let yearSequence = [];
-            let makeSequence = [];
-            let modelSequence = [];
-            let compArray = [];
-            if (Array.isArray(product.Comp)) {
-                compArray = product.Comp;
-            } else {
-                compArray = product.Comp.split(" <> ");
-            }
-            var i = 0;
-            while (i < compArray.length) {
-                let compParts = compArray[i].split(" ");
-                let compYears = compParts[compParts.length - 1];
-                let charCount = compYears.split("");
-                let yearStart = 0;
-                let yearEnd = 0;
-                if (charCount.length > 4) {
-                    yearStart = compYears.slice(0, 4);
-                    yearEnd = compYears.slice(4);
-                } else {
-                    yearStart = compYears;
-                    yearEnd = 2023;
-                }
-                let yearIndex = 0;
-                while (yearStart < yearEnd) {
-                    yearSequence[yearIndex] = yearStart;
-                    yearIndex++;
-                    yearStart++;
-                }
-                yearSequence.push(yearEnd);
-                makeSequence[i] = compParts[0];
-                let j = 1;
-                while (j < compParts.length - 1) {
-                    if (modelSequence[i] != undefined) {
-                        modelSequence[i] = modelSequence[i] + " " + compParts[j];
-                    } else {
-                        modelSequence[i] = compParts[j];
-                    }
-                    j++;
-                }
-                i++;
-            }
-            let makeString = makeSequence.toString();
-            let modelString = modelSequence.toString();
-            let yearString = yearSequence.toString();
-
-            if (make) make.textContent = makeString.replaceAll(",", ", ");
-            if (model) model.textContent = modelString.replaceAll(",", ", ");
-            if (year) year.textContent = yearString.replaceAll(",", ", ");
-        } else {
-            if (make) make.textContents = "Universale";
-            if (model) model.textContent = "Universale";
-            if (year) year.textContent = "Universale";
-        }
-        if (producer) producer.textContent = product.Brand;
-        if (button) button.setAttribute('href', 'https://sp-italian-customs.webflow.io/articoli?id=' + product._id);
-        if (code) code.textContent = product.code;
-        //if (year) year.textContent = product.year;
-
-        let priceArr = product.price.toString();
-        priceArr = priceArr.split(",").filter(onlyUnique);
-        priceArr = priceArr.sort();
-        if (price) price.textContent = "€" + addZeroes(priceArr[0]);
-
-
-        return newItem;
+        // Set the make text content to the makeSequence array, joined with a comma and space
+        make.textContent = makeSequence.join(", ");
+        // Set the model text content to the modelSequence array, joined with a comma and space
+        model.textContent = modelSequence.join(", ");
+        // Set the year text content to the yearSequence array, joined with a comma and space
+        year.textContent = yearSequence.join(", ");
+        // Set the producer text content to the product Producer
+        producer.textContent = product.Producer;
+        // Set the button href to the product link
+        button.href = product.link;
+        // Set the price text content to the product price
+        price.textContent = addZeroes(product.price);
+        // Set the code text content to the product code
+        code.textContent = product.code;
     };
 
-    function onlyUnique(value, index, self) {
-        return self.indexOf(value) === index;
-    }
     function addZeroes(num) {
-        // Convert input string to a number and store as a variable.
         var value = Number(num);
-        // Split the input string into two arrays containing integers/decimals
         var res = num.split(".");
-        // If there is no decimal point or only one decimal place found.
         if (res.length == 1 || res[1].length < 3) {
-            // Set the number to two decimal places
             value = value.toFixed(2);
         }
-        // Return updated or original number.
         return value;
     }
 
+     function onlyUnique(value, index, self) {
+        return self.indexOf(value) === index;
+    }
+
+    function delay(time) {
+        return new Promise(resolve => setTimeout(resolve, time));
+    }
 })();
