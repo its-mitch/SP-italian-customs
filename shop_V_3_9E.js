@@ -226,6 +226,7 @@
         price.textContent = addZeroes(product.price);
         // Set the code text content to the product code
         code.textContent = product.code;
+        return newItem;ß
     };
 
     function addZeroes(num) {
