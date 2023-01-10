@@ -88,8 +88,7 @@
                 }
                 document.cookie = "modelSelection=";
                 document.cookie = "yearSelection=";
-                resetFilters("model");
-                resetFilters("years");
+                resetFilters();
             }
 
             let uniqueYears = [];
@@ -125,7 +124,7 @@
 
                 }
                 document.cookie = "yearSelection=";
-                resetFilters("years");
+                resetFilters();
 
             };
             yearSel.onchange = function () {
