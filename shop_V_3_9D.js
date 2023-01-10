@@ -192,23 +192,25 @@
         const makeSequence = [];
         const modelSequence = [];
         // Iterate over the compArray
-        for (const comp of compArray) {
-            // Split the comp into parts
-            const compParts = comp.split(" ");
-            // Get the compYears from the last part
-            const compYears = compParts[compParts.length - 1];
-            // Split the compYears into start and end years, with a default end year of 2023
-            const [yearStart, yearEnd = 2023] = compYears.length > 4 ? [compYears.slice(0, 4), compYears.slice(4)] : [compYears];
-            // Add all the years from start to end (exclusive) to theyearSequence array
-            for (let year = yearStart; year < yearEnd; year++) {
-                yearSequence.push(year);
+        if (Array.isArray(compArray) && compArray.length > 0) {
+            for (const comp of compArray) {
+                // Split the comp into parts
+                const compParts = comp.split(" ");
+                // Get the compYears from the last part
+                const compYears = compParts[compParts.length - 1];
+                // Split the compYears into start and end years, with a default end year of 2023
+                const [yearStart, yearEnd = 2023] = compYears.length > 4 ? [compYears.slice(0, 4), compYears.slice(4)] : [compYears];
+                // Add all the years from start to end (exclusive) to theyearSequence array
+                for (let year = yearStart; year < yearEnd; year++) {
+                    yearSequence.push(year);
+                }
+                // Add the end year to the yearSequence array
+                yearSequence.push(yearEnd);
+                // Add the make to the makeSequence array
+                makeSequence.push(compParts[0]);
+                // Add the model to the modelSequence array
+                modelSequence.push(compParts.slice(1, -1).join(" "));
             }
-            // Add the end year to the yearSequence array
-            yearSequence.push(yearEnd);
-            // Add the make to the makeSequence array
-            makeSequence.push(compParts[0]);
-            // Add the model to the modelSequence array
-            modelSequence.push(compParts.slice(1, -1).join(" "));
         }
         // Set the make text content to the makeSequence array, joined with a comma and space
         make.textContent = makeSequence.join(", ");
