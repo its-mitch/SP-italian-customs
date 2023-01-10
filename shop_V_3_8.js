@@ -154,9 +154,9 @@
             let modelString= modelSequence.toString();
             let yearString= yearSequence.toString();
             
-            if (make) make.textContent = makeString.replaceAll(",","");
-            if (model) model.textContent = modelString.replaceAll(",","");
-            if (year) year.textContent = yearString.replaceAll(",","");
+            if (make) make.textContent = makeString.replaceAll(",",", ");
+            if (model) model.textContent = modelString.replaceAll(",",", ");
+            if (year) year.textContent = yearString.replaceAll(",",", ");
         } else {
             if (make) make.textContents = "Universale";
             if (model) model.textContent = "Universale";

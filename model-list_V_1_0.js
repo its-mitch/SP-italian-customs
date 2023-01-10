@@ -82,6 +82,8 @@ makeSel.onchange= function(){
   }
   document.cookie="modelSelection=";
   document.cookie="yearSelection=";
+  resetFilters("model");
+  resetFilters("years");
 }
 
      	
@@ -120,6 +122,8 @@ modelSel.onchange= function(){
     
   }
   document.cookie="yearSelection=";
+  resetFilters("years");
+
 };
 yearSel.onchange=function(){
 	if(yearSel.selectedOptions[0].value!=undefined){
