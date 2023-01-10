@@ -182,7 +182,11 @@
         spec.textContent = (Array.isArray(product.spec) ? product.spec.join("\r\n") : product.spec) || "";
 
         // Split the product Comp into an array if it's not already an array
-        const compArray = Array.isArray(product.Comp) ? product.Comp : product.Comp.split(" <> ")??[];
+        let compArray;
+        if (product.Comp != null) {
+            compArray = Array.isArray(product.Comp) ? product.Comp : product.Comp.split(" <> ");
+        }
+
         // Initialize empty arrays for the year, make, and model sequences
         const yearSequence = [];
         const makeSequence = [];
@@ -231,7 +235,7 @@
         return value;
     }
 
-     function onlyUnique(value, index, self) {
+    function onlyUnique(value, index, self) {
         return self.indexOf(value) === index;
     }
 
