@@ -220,7 +220,7 @@
         // Set the producer text content to the product Producer
         producer.textContent = product.Producer;
         // Set the button href to the product link
-        button.href = product.link;
+        button.href = 'https://sp-italian-customs.webflow.io/articoli?id=' + product._id;
         // Set the price text content to the product price
         price.textContent = addZeroes(product.price);
         // Set the code text content to the product code
